@@ -6,7 +6,7 @@
     
     <h1>BIENVENIDO A AGREGAR LOS PRODUCTOS</h1>
 
-    <form action="{{route('productos.store')}}" method="post">
+    <form action="{{route('productos.store')}}" method="post" enctype="multipart/form-data">
 
         @csrf
 
@@ -49,17 +49,19 @@
 
         <br><br>
 
-    <!--    <label>
-            foto
-            <input type="file" name="photo1" value="{{old('photo1')}}">
-        </label>
-        <br><br>
         <label>
-            video
-            <input type="file" name="video" value="{{old('video')}}">
+            foto
+            <input type="file" name="photo[]" multiple>
         </label>
 
-        <br><br> -->
+        <br><br>
+
+        <label>
+            video
+            <input type="file" name="video[]" multiple>
+        </label>
+
+        <br><br>
 
         <button type="submit">Agregar</button>
     </form>

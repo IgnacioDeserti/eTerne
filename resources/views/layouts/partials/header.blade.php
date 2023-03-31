@@ -2,14 +2,17 @@
     <h1>menu</h1>
     <nav>
         
-        
-        <li><a href="{{route('productos.index')}}" class="{{request()->routeIs('productos.index') ? 'active' : ''}}">Productos</a>
-            @dump(request()->routeIs('productos.index'))
-        </li>
+        <div class="containerNav">
+            <ul class="ulNav">
+                <li class="liNav">
+                    <a class="aNav" href="{{route('productos.index')}}" class="{{request()->routeIs('productos.index') ? 'active' : ''}}">Productos</a>
+                </li>
 
-        <li>
-            <a href="{{route('contactanos.index')}}" class="{{request()->routeIs('contactanos.index') ? 'active' : ''}}">Contactanos</a>
-        </li>
+                <li class="liNav">
+                    <a class="aNav" href="{{route('contactanos.index')}}" class="{{request()->routeIs('contactanos.index') ? 'active' : ''}}">Contactanos</a>
+                </li>
 
+            </ul>
+        </div>
     </nav>
 </header>

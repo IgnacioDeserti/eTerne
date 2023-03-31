@@ -2,35 +2,57 @@
 
 namespace App\Models;
 
-use App\Models\Image;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+
+
+
+/**
+ * Summary of Product
+ */
 class Product extends Model
 {
-    use HasFactory;
-
+    /**
+     * Summary of guarded
+     * @var array
+     */
     protected $guarded = [];
 
+
+    /**
+     * Summary of getRouteKeyName
+     * @return string
+     */
     public function getRouteKeyName()
     {
         return 'slug';
     }
 
-    public function photo(){
-        //relacion 1 a 1
-        return $this->hasOne($this->id, 'idImageable', Image::class);
-    }
-
+    /**
+     * Summary of category
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function category(){
         return $this->hasOne('App\Models\ProductXCategory');
     }
 
+    /**
+     * Summary of images
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function images(){
         return $this->hasMany('App\Models\ImageProducts');
     }
     
+    /**
+     * Summary of videos
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function videos(){
         return $this->hasMany('App\Models\VideoProducts');
     }
+
 }

@@ -1,10 +1,20 @@
 @extends('layouts.plantilla')
+@props(['photos', 'videos'])
 
 @section('title', $producto->name)
 
 @section('content')
     
     <h1>BIENVENIDO AL PRODUCTO <br><br> {{$producto->name}}</h1>
+
+    
+    @foreach ($photos as $photo)
+        <img src="{{asset($photo->url)}}">
+    @endforeach
+
+    @foreach ($videos as $video)
+        
+    @endforeach
     <a href="{{route('productos.index')}}">Volver al menu de productos</a>
 
     <a href="{{route('productos.edit', $producto)}}">Editar Producto</a>
