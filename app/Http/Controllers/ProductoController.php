@@ -29,19 +29,8 @@ class ProductoController extends Controller{
         
         $producto = product::create($request->except('photo', 'video'));
 
-        foreach($request->file('photo') as $photo){
-            $imageName = $photo->getClientOriginalName();
-            $uniqueImageName = time().rand(99,9999).$imageName;
-            Storage::putFileAs('public/product-photos/', $photo, $uniqueImageName);
-            DB::insert('INSERT INTO image_products (url, product_id) VALUES (:url, :product_id)', ['url' => 'storage/product-photos/'.$uniqueImageName, 'product_id' => $producto->id]);
-        }
-
-        foreach($request->file('video') as $video){
-            $videoName = $video->getClientOriginalName();
-            $uniqueVideoName = time().rand(99,9999).$videoName;
-            Storage::putFileAs('public/product-videos/', $video, $uniqueVideoName);
-            DB::insert('INSERT INTO video_products (url, product_id) VALUES (:url, :product_id)', ['url' => 'storage/product-videos/'.$uniqueVideoName, 'product_id' => $producto->id]);
-        }
+        $this->storeFile($request, 'photo', $producto->id);
+        $this->storeFile($request, 'video', $producto->id);
         
         ProductXCategory::create(['product_id' => $producto->id,
         'category_id' => $producto->idCategory]);
@@ -71,5 +60,14 @@ class ProductoController extends Controller{
         $producto->delete();
 
         return redirect()->route('productos.index');
+    }
+
+    public function storeFile(Request $request, $typeFile, $producto_id){
+        foreach($request->file($typeFile) as $file){
+            $fileName = $file->getClientOriginalName();
+            $uniqueFileName = time().rand(99,9999).$fileName;
+            Storage::putFileAs('public/product-'.$typeFile.'s/', $file, $uniqueFileName);
+            DB::insert('INSERT INTO image_products (url, product_id) VALUES (:url, :product_id)', ['url' => 'storage/product-'.$typeFile.'s/'.$uniqueFileName, 'product_id' => $producto_id]);
+        }
     }
 }

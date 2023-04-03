@@ -13,7 +13,7 @@
     @endforeach
 
     @foreach ($videos as $video)
-        
+        <iframe src="{{($video->url)}}" frameborder="0"></iframe>
     @endforeach
     <a href="{{route('productos.index')}}">Volver al menu de productos</a>
 
