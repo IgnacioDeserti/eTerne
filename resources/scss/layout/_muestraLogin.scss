@@ -45,11 +45,16 @@ $color_2: #03e9f4;
 	}
 }
 
+body {
+	background-color: #121212;
+}
+
 .login-box {
 	position: relative;
+	top: 20%;
+	@include properties-flex(column, center, left);
 	display: flex;
 	flex-wrap: wrap;
-    flex-direction: column;
 	width: 100%;
 	max-width: 450px;
 	margin: 0 auto;
@@ -59,11 +64,12 @@ $color_2: #03e9f4;
 	box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
 	border-radius: 10px;
 
-	h2 {
+	h3 {
 		margin: 0 0 30px;
 		padding: 0;
 		color: $color_1;
 		text-align: center;
+		font-size: 1.5rem;
 	}
 
 	.user-box {
@@ -83,7 +89,7 @@ $color_2: #03e9f4;
 
 			&:focus {
 				~label {
-					top: -20px;
+					top: -30px;
 					left: 0;
 					color: $color_2;
 					font-size: 12px;
@@ -178,6 +184,34 @@ $color_2: #03e9f4;
 					animation-delay: .75s;
 				}
 			}
+		}
+	}
+
+	.containerPrivacyPolicy {
+		position: relative;
+		top: 1rem;
+		.containerFlex{
+			display: flex;
+			flex-direction: row;
+		}
+
+		.checkbox {
+			position: relative;
+			border-radius: 50%;
+			margin: 5px;
+		}
+
+		label {
+			color: #fff;
+		}
+
+		a {
+			color: rgb(0, 153, 255);
+		}
+
+		.alreadyRegistered{
+			position: relative;
+			top: 0.5rem;
 		}
 	}
 
