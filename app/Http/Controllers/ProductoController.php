@@ -82,6 +82,7 @@ class ProductoController extends Controller{
     }
 
     public function destroy(product $producto){
+        $this->deleteFiles($producto);
         $producto->delete();
 
         return redirect()->route('productos.index');
