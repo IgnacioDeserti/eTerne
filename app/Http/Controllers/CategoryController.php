@@ -37,7 +37,7 @@ class CategoryController extends Controller{
         return view('categories.edit', compact('category'));
     }
 
-    public function update(Request $request, Category $category){
+    public function update(StoreCategory $request, Category $category){
         $request['slug'] = Str::slug($request->input('name'), '-');
         $category->update($request->all());
 
