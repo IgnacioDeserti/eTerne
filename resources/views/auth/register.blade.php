@@ -1,30 +1,10 @@
 @extends('layouts.register')
 
-<div class="login-box">
     <x-validation-errors class="mb-4" />
 
-    <form method="POST" action="{{ route('register') }}">
+    <form class = "general-box" method="POST" action="{{ route('register') }}">
         @csrf
-
-        <h3>Inicio de sesión</h3>
-        <form>
-            <div class="user-box">
-                <input type="text" name="" required="">
-                <label>Correo</label>
-            </div>
-            <div class="user-box">
-                <input type="password" name="" required="">
-                <label>Contraseña</label>
-            </div>
-            <a href="#" class="btnIniciar">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Iniciar
-            </a>
-        </form>
-
+        <div id="register-box"></div>
         <div class="containerPrivacyPolicy">
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="containerFlex">
@@ -39,10 +19,9 @@
             @endif
 
             <div class="alreadyRegistered">
-                <a class="" href="{{ route('login') }}">
+                <a href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
             </div>
         </div>
     </form>
-</div>

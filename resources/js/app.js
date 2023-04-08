@@ -7,3 +7,6 @@ window.Alpine = Alpine;
 Alpine.plugin(focus);
 
 Alpine.start();
+import './components/RegisterBox';
+import './components/Login/LoginBox';
+import './components/ProductsSection/ProductsSection';

@@ -1,5 +1,10 @@
 $color_1: #fff;
 $color_2: #03e9f4;
+$alert-padding: 1rem;
+$alert-background: #f8d7da;
+$alert-text-color: #721c24;
+$alert-border-radius: 5px;
+
 
 @keyframes btn-anim1 {
 	0% {
@@ -49,9 +54,9 @@ body {
 	background-color: #121212;
 }
 
-.login-box {
+.general-box {
 	position: relative;
-	top: 20%;
+	top: 80px;
 	@include properties-flex(column, center, left);
 	display: flex;
 	flex-wrap: wrap;
@@ -86,137 +91,121 @@ body {
 			border-bottom: 1px solid #fff;
 			outline: none;
 			background: transparent;
-
-			&:focus {
-				~label {
-					top: -30px;
-					left: 0;
-					color: $color_2;
-					font-size: 12px;
-				}
-			}
-
-			&:valid {
-				~label {
-					top: -20px;
-					left: 0;
-					color: $color_2;
-					font-size: 12px;
-				}
-			}
-		}
-
-		label {
-			position: absolute;
-			top: 0;
-			left: 0;
-			padding: 10px 0;
-			font-size: 16px;
-			color: $color_1;
-			pointer-events: none;
-			transition: .5s;
 		}
 	}
 
-	form {
-		text-align: center;
-
-		.btnIniciar {
-			position: relative;
-			display: inline-block;
-			padding: 10px 20px;
-			color: $color_2;
-			font-size: 16px;
-			text-decoration: none;
-			text-transform: uppercase;
-			overflow: hidden;
-			transition: .5s;
-			margin-top: 40px;
-			letter-spacing: 4px;
-
-			&:hover {
-				background: #03e9f4;
-				color: $color_1;
-				border-radius: 5px;
-				box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
-			}
-
-			span {
-				position: absolute;
-				display: block;
-
-				&:nth-child(1) {
-					top: 0;
-					left: -100%;
-					width: 100%;
-					height: 2px;
-					background: linear-gradient(90deg, transparent, #03e9f4);
-					animation: btn-anim1 1s linear infinite;
-				}
-
-				&:nth-child(2) {
-					top: -100%;
-					right: 0;
-					width: 2px;
-					height: 100%;
-					background: linear-gradient(180deg, transparent, #03e9f4);
-					animation: btn-anim2 1s linear infinite;
-					animation-delay: .25s;
-				}
-
-				&:nth-child(3) {
-					bottom: 0;
-					right: -100%;
-					width: 100%;
-					height: 2px;
-					background: linear-gradient(270deg, transparent, #03e9f4);
-					animation: btn-anim3 1s linear infinite;
-					animation-delay: .5s;
-				}
-
-				&:nth-child(4) {
-					bottom: -100%;
-					left: 0;
-					width: 2px;
-					height: 100%;
-					background: linear-gradient(360deg, transparent, #03e9f4);
-					animation: btn-anim4 1s linear infinite;
-					animation-delay: .75s;
-				}
-			}
-		}
-	}
-
-	.containerPrivacyPolicy {
+	.btnGeneral {
 		position: relative;
-		top: 1rem;
-		.containerFlex{
-			display: flex;
-			flex-direction: row;
+		display: inline-block;
+		padding: 10px 20px;
+		color: $color_2;
+		font-size: 16px;
+		text-decoration: none;
+		text-transform: uppercase;
+		overflow: hidden;
+		transition: .5s;
+		margin-top: 40px;
+		letter-spacing: 4px;
+
+
+		&:hover {
+			background: #03e9f4;
+			color: $color_1;
+			border-radius: 5px;
+			box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
 		}
 
-		.checkbox {
-			position: relative;
-			border-radius: 50%;
-			margin: 5px;
-		}
+		span {
+			position: absolute;
+			display: block;
 
-		label {
-			color: #fff;
-		}
+			&:nth-child(1) {
+				top: 0;
+				left: -100%;
+				width: 100%;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, #03e9f4);
+				animation: btn-anim1 1s linear infinite;
+			}
 
-		a {
-			color: rgb(0, 153, 255);
-		}
+			&:nth-child(2) {
+				top: -100%;
+				right: 0;
+				width: 2px;
+				height: 100%;
+				background: linear-gradient(180deg, transparent, #03e9f4);
+				animation: btn-anim2 1s linear infinite;
+				animation-delay: .25s;
+			}
 
-		.alreadyRegistered{
-			position: relative;
-			top: 0.5rem;
+			&:nth-child(3) {
+				bottom: 0;
+				right: -100%;
+				width: 100%;
+				height: 2px;
+				background: linear-gradient(270deg, transparent, #03e9f4);
+				animation: btn-anim3 1s linear infinite;
+				animation-delay: .5s;
+			}
+
+			&:nth-child(4) {
+				bottom: -100%;
+				left: 0;
+				width: 2px;
+				height: 100%;
+				background: linear-gradient(360deg, transparent, #03e9f4);
+				animation: btn-anim4 1s linear infinite;
+				animation-delay: .75s;
+			}
 		}
 	}
+
+	.btnIniciar {
+		margin-left: 19%;
+	}
+
 
 	@media screen and (max-width: 768px) {
 		width: 80%;
 		max-width: 400px;
 	}
+}
+
+.containerPrivacyPolicy {
+	position: relative;
+	top: 1rem;
+
+	.containerFlex {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.checkbox {
+		position: relative;
+		border-radius: 50%;
+		margin: 5px;
+	}
+
+	label {
+		color: #fff;
+	}
+
+	a {
+		color: rgb(0, 153, 255);
+	}
+
+	.alreadyRegistered {
+		position: relative;
+		top: 0.5rem;
+	}
+}
+
+.alert {
+	display: flex;
+	align-items: center;
+	border: 2px solid darken($alert-background, 10%);
+	padding: $alert-padding;
+	background-color: $alert-background;
+	color: $alert-text-color;
+	border-radius: $alert-border-radius;
 }
