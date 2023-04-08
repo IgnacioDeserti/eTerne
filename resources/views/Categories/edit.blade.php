@@ -14,7 +14,7 @@
 
         <label>
             nombre
-            <input type="text" name="name" value="{{$category->name}}" required value="{{old('name')}}">
+            <input type="text" name="name" value="{{$category->name}}" required>
         </label>
 
         <button type="submit">Editar</button>
