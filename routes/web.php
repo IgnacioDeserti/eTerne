@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactanosController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\CategoryController;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -32,6 +33,7 @@ Route::get('contactanos', [ContactanosController::class, 'index'])->name('contac
 
 Route::post('contactanos', [ContactanosController::class, 'store'])->name('contactanos.store');
 
+Route::resource('categories', CategoryController::class);
 
 
 Route::middleware([

@@ -10,6 +10,10 @@
                 <li class="liNav">
                     <a class="aNav" href="{{route('contactanos.index')}}" class="{{request()->routeIs('contactanos.index') ? 'active' : ''}}">Contactanos</a>
                 </li>
+                
+                <li class="liNav">
+                    <a class="aNav" href="{{route('categories.index')}}" class="{{request()->routeIs('categories.index') ? 'active' : ''}}">Categorias</a>
+                </li>
             </ul>
         </div>
     </nav>

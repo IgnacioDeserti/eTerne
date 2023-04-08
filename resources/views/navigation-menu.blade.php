@@ -9,7 +9,13 @@
             'name' => 'Productos',
             'route' => route('productos.index'),
             'active' => request()->routeIs('productos.index')
-        ]
+        ],
+        [
+            'name' => 'Categorias',
+            'route' => route('categories.index'),
+            'active' => request()->routeIs('categories.index')
+        ]        
+
 ];
 @endphp
 

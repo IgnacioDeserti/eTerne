@@ -5,14 +5,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-
-
-
-
-/**
- * Summary of Product
- */
 class Product extends Model
 {
     /**

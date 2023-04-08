@@ -51,7 +51,7 @@
 
         <label>
             foto
-            <input type="file" name="photo[]" multiple>
+            <input type="file" name="image[]" multiple>
         </label>
 
         <br><br>

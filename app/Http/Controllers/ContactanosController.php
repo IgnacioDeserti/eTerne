@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactanosController extends Controller{
     
-    public function index(){
+    /*public function index(){
         return view('contactanos.index');
-    }
+    }*/
 
     public function store(Request $request){
         $mail = new ContactanosMailable($request->all());

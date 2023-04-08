@@ -6,7 +6,7 @@
     
     <h1>BIENVENIDO A EDITAR EL PRODUCTO</h1>
 
-    <form action="{{route('productos.update', $producto)}}" method="post">
+    <form action="{{route('productos.update', $producto)}}" method="post" enctype="multipart/form-data">
 
         @csrf
 
@@ -66,7 +66,7 @@
 
         <label>
             precio
-            <input type="number" step="any" name="price" value="" required value="{{old('price')}}">
+            <input type="number" step="any" name="price" value="{{old('price')}}" required>
         </label>
 
         @error('price')
@@ -79,12 +79,12 @@
 
         <label>
             foto
-            <input type="file" name="photo1" value="{{$producto->photo1}}" >
+            <input type="file" name="image[]" value="{{old('image[]')}}"  multiple>
         </label>
         <br><br>
         <label>
             video
-            <input type="file" name="video" value="{{$producto->video}}">
+            <input type="file" name="video[]" value="{{old('video[]')}}"  multiple>
         </label>
 
         <br><br>
