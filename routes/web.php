@@ -35,6 +35,8 @@ Route::post('contactanos', [ContactanosController::class, 'store'])->name('conta
 
 Route::resource('categories', CategoryController::class);
 
+Route::get('photos', [ProductoController::class, 'photos']);
+
 
 Route::middleware([
     'auth:sanctum',

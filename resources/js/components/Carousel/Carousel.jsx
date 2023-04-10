@@ -11,7 +11,7 @@ const Carousel = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    fetch('app\Http\Controllers\ProductoController.php')
+    fetch('/productos')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error(error));
@@ -92,7 +92,7 @@ const Carousel = () => {
                 >
                   <img
                     className="carousel__image"
-                    src={product.image_url}
+                    src={photo[product.id]}
                     alt={product.name}
                   />
                   <h3 className="carousel__subtitle">{product.name}</h3>

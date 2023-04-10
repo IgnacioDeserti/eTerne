@@ -99,4 +99,17 @@ class ProductoController extends Controller{
             DB::insert($tableName, ['url' => 'storage/product-'.$typeFile.'s/'.$uniqueFileName, 'product_id' => $producto_id]);
         }
     }
+
+    public function photos($producto){
+        $photos = DB::select('SELECT * from image_products WHERE product_id = ? limit 1', [$producto->id]); 
+        $jsonPhotos = json_encode($photos);
+
+        return $jsonPhotos;
+    }
+
+    public function videos($producto){
+        $videos = DB::select('SELECT * from video_products WHERE product_id = ?', [$producto->id]);
+        $jsonVideos = json_encode($videos);
+        return $jsonVideos;
+    }
 }
