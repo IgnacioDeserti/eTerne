@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <div class="containerNavbar">
+    <div id="menu-container" class="menu-container">
         @if (Route::has('login'))
             @auth
                 <a href="{{ url('/dashboard') }}" class="aNav">Dashboard</a>

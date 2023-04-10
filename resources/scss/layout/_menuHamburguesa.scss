@@ -1,0 +1,42 @@
+.hamburger-menu {
+  display: flex;
+  justify-content: flex-end;
+
+  .menu-toggle {
+    font-size: 1.5rem;
+    background-color: black;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 250px;
+    height: fit-content;
+    background-color: #fff;
+    z-index: 1;
+    border-radius: 5%;
+    transition: all 0.3s ease-in-out;
+
+    &.open {
+      right: 0;
+      height: fit-content;
+    }
+
+    a {
+      display: block;
+      padding: 20px;
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #f2f2f2;
+      }
+    }
+  }
+}
