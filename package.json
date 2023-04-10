@@ -19,8 +19,11 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@material-ui/core": "^4.12.4",
+        "@fortawesome/fontawesome-free": "^6.4.0",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.10.0",
+        "react-slick": "^0.29.0",
+        "slick-carousel": "^1.8.1"
     }
 }

@@ -1,6 +1,13 @@
 @import "./base/reset";
 @import "./utilities/mixins";
-@import "./layout/header";
 
+@import './layout/header';
+@import './layout/navBar';
 @import './layout/muestraLogin';
 @import './layout/productsSection';
+@import './layout/two-factor-challenge';
+@import './layout/productDetail';
+@import './layout/itemCount';
+@import './layout/carousel';
+@import './layout/productDetailViewLink';
+@import './layout/footer';

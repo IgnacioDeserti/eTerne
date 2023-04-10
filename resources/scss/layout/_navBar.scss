@@ -1,0 +1,30 @@
+// Define las variables
+$navbar-height: 50px;
+$nav-link-color: #333;
+$nav-link-hover-color: #505050;
+$nav-link-transition-speed: 0.5s;
+
+// Estilo para el contenedor del navbar
+.containerNavbar {
+    position: relative;
+    @include properties-flex(row, flex-end, center);
+    gap: 5px;
+    flex-wrap: wrap;
+    height: $navbar-height;
+}
+
+// Estilo para los enlaces dentro del navbar
+.aNav {
+    margin: 0 10px; // Agrega un margen a los lados de cada enlace
+    color: $nav-link-color;
+    background-color: rgba(133, 133, 133, 0.281);
+    padding: 5px;
+    border-radius: 20%;
+    transition: color $nav-link-transition-speed;
+
+    // Hover style para los enlaces dentro del navbar
+    &:hover {
+        color: $nav-link-hover-color;
+        transform: scale(1.1);
+    }
+}
