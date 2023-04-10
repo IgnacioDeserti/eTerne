@@ -16,9 +16,11 @@ use Illuminate\Support\Str;
 class ProductoController extends Controller{
     
     public function index(){
-        $productos = product::orderBy('id', 'desc')->paginate();
+        $productos = product::all();
 
-        return view('productos.index', compact('productos'));
+        $jsonProducts = json_encode($productos);
+
+        return view('productos.index', compact('jsonProducts'));
     }
 
     public function create(){

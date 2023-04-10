@@ -6,12 +6,13 @@ import Slider from "react-slick";
 import ProductDetailViewLink from './ProductDetailViewLink';
 import Footer from '../Footer/Footer';
 
+
 const Carousel = () => {
   const [products, setProducts] = React.useState([]);
   const [selectedProduct, setSelectedProduct] = React.useState(null);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    fetch("http://127.0.0.1:8000/App/Http/Controllers/ProductoController.php")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -93,9 +94,9 @@ const Carousel = () => {
                 <img
                   className="carousel__image"
                   src={product.image}
-                  alt={product.title}
+                  alt={product.name}
                 />
-                <h3 className="carousel__subtitle">{product.title}</h3>
+                <h3 className="carousel__subtitle">{product.name}</h3>
                 <p className="carousel__price">{product.price}$</p>
               </div>
             ))}
