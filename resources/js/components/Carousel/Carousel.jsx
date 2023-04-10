@@ -6,15 +6,15 @@ import Slider from "react-slick";
 import ProductDetailViewLink from './ProductDetailViewLink';
 import Footer from '../Footer/Footer';
 
-
 const Carousel = () => {
-  const [products, setProducts] = React.useState([]);
-  const [selectedProduct, setSelectedProduct] = React.useState(null);
+  const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/App/Http/Controllers/ProductoController.php")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    fetch('app\Http\Controllers\ProductoController.php')
+      .then(response => response.json())
+      .then(data => setProducts(data))
+      .catch(error => console.error(error));
   }, []);
 
   const settings = {
@@ -70,47 +70,45 @@ const Carousel = () => {
     setSelectedProduct(product);
   };
 
-  return (<>
-    <div className="carousel">
-      {selectedProduct ? (
-        <div>
-          <ProductDetailViewLink product={selectedProduct} />
-        </div>
-      ) : (
-        <>
-          <h2 className="carousel__title">Productos destacados</h2>
-          <Slider
-            className="carousel__slider"
-            {...settings}
-            draggable={false}
-            style={{ userSelect: 'none' }}
-          >
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="carousel__slide"
-                onClick={() => handleProductClick(product)}
-              >
-                <img
-                  className="carousel__image"
-                  src={product.image}
-                  alt={product.name}
-                />
-                <h3 className="carousel__subtitle">{product.name}</h3>
-                <p className="carousel__price">{product.price}$</p>
-              </div>
-            ))}
-          </Slider>
-        </>
-      )}
-    </div>
-    <Footer />
+  return (
+    <>
+      <div className="carousel">
+        {selectedProduct ? (
+          <div>
+            <ProductDetailViewLink product={selectedProduct} />
+          </div>
+        ) : (
+          <>
+            <h2 className="carousel__title">Productos destacados</h2>
+            <Slider
+              className="carousel__slider"
+              {...settings}
+              draggable={false}>
+              {products.map((product) => (
+                <div
+                  key={product.id}
+                  className="carousel__slide"
+                  onClick={() => handleProductClick(product)}
+                >
+                  <img
+                    className="carousel__image"
+                    src={product.image_url}
+                    alt={product.name}
+                  />
+                  <h3 className="carousel__subtitle">{product.name}</h3>
+                  <p className="carousel__price">{product.price}$</p>
+                </div>
+              ))}
+            </Slider>
+          </>
+        )}
+      </div>
+      <Footer />
     </>
   );
 };
 
 export default Carousel;
-
 
 const rootElement = document.getElementById('carousel');
 if (rootElement) {

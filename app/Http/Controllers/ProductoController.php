@@ -16,11 +16,11 @@ use Illuminate\Support\Str;
 class ProductoController extends Controller{
     
     public function index(){
-        $productos = product::all();
+        $productos = product::all()->toArray();
 
         $jsonProducts = json_encode($productos);
 
-        return view('productos.index', compact('jsonProducts'));
+        return response()->json($productos);
     }
 
     public function create(){

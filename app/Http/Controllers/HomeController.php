@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Product;
 
 
 class HomeController extends Controller{
     public function index(){
-        return view('welcome');
+        $productos = Product::all();
+
+        $jsonProducts = json_encode($productos);
+        print_r($productos);
+        /* return view('welcome', compact('jsonProducts')); */
     }
 }
 
