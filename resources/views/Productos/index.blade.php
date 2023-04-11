@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@props(['jsonProducts'])
+@props(['productos'])
 
 @section('title', 'Index')
 
@@ -8,7 +8,9 @@
     <h1>BIENVENIDO A LOS PRODUCTOS</h1>
     <a href="{{route('productos.create')}}">Agregar Producto</a><br><br>
     <ul>
-        
+        @foreach ($productos as $item)
+            <h3>{{$item->name}}</h3><br>
+        @endforeach
     </ul>
 
     

@@ -1,4 +1,4 @@
-@props(['jsonDatos'])
+@props(['jsonProducts', 'jsonImages'])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -30,8 +30,8 @@
         @endif
     </div>
 
-    <div id="carousel">{{$jsonDatos}}</div>
-    {{-- <div id="products-section"></div> --}}
+    <div id="carousel" data-list="{{$jsonProducts}}, {{$jsonImages}}"></div>
+    <!-- <div id="products-section"></div> -->
 </body>
 
 </html>
