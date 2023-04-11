@@ -9,7 +9,7 @@
     <a href="{{route('productos.create')}}">Agregar Producto</a><br><br>
     <ul>
         @foreach ($productos as $item)
-            <h3>{{$item->name}}</h3><br>
+            <h3><a href="{{route('productos.show')}}">{{$item->name}}</a></h3><br>
         @endforeach
     </ul>
 
