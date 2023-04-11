@@ -37,10 +37,14 @@
         @enderror
 
         <br><br>
-
         <label>
-            idcategoria
-            <input type="number" name="idCategory" value="{{$producto->idCategory}}" required value="{{old('idCategory')}}">
+            categoria
+            <select name="idCategory">
+                <option value="">Seleccione categoria</option>
+                @foreach ($categories as $category)
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endforeach
+            </select>
         </label>
 
         @error('idCategory')
