@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom/client';
 
 const Footer = () => {
   return (
@@ -18,3 +19,8 @@ const Footer = () => {
 };
 
 export default Footer;
+
+const rootElement = document.getElementById('footer');
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(<Footer />);
+}
