@@ -16,11 +16,15 @@ use Illuminate\Support\Str;
 class ProductoController extends Controller{
     
     public function index(){
-        $productos = product::all()->toArray();
+        $productos = product::all();
 
         $jsonProducts = json_encode($productos);
 
-        return response()->json($productos);
+        return view('productos.index', compact('productos'));
+    }
+
+    public function exhibition(){
+
     }
 
     public function create(){
@@ -51,9 +55,10 @@ class ProductoController extends Controller{
     }
 
     public function edit(product $producto){
+        $categories = Category::all();
         $photos = DB::select('SELECT * from image_products WHERE product_id = ?', [$producto->id]);
         $videos = DB::select('SELECT * from video_products WHERE product_id = ?', [$producto->id]);
-        return view('productos.edit', compact('producto'));
+        return view('productos.edit', compact('producto', 'categories'));
     }
 
     public function update(Request $request, product $producto){   

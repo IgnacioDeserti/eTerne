@@ -1,4 +1,4 @@
-@props(['jsonProducts', 'jsonImages'])
+@props(['jsonData'])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -11,7 +11,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    @viteReactRefresh
+    
     @vite(['resources/css/app.css', 'resources/scss/main.scss', 'resources/js/app.js'])
 </head>
 
@@ -30,7 +30,7 @@
         @endif
     </div>
 
-    <div id="carousel" data-list="{{$jsonProducts}}, {{$jsonImages}}"></div>
+    <div id="carousel"></div>
     <!-- <div id="products-section"></div> -->
 </body>
 

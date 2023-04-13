@@ -5,6 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoryController;
 use App\Mail\ContactanosMailable;
+use App\Models\ImageProducts;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -35,9 +38,6 @@ Route::post('contactanos', [ContactanosController::class, 'store'])->name('conta
 
 Route::resource('categories', CategoryController::class);
 
-Route::get('photos', [ProductoController::class, 'photos']);
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -55,10 +55,32 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     })->name('dashboard');
 });
 
-Route::get('prueba', function(){
-    return "Has accedido a la ruta de prueba";
-})->middleware('auth:sanctum', 'age');
+Route::get('/productosReact', function() {
+    header('Access-Control-Allow-Origin: *');
+    header('Content-Type: application/json');
+    $productos = Product::all();
+    $imagenes = [];
+    $aux = new ImageProducts;
 
-Route::get("no-autorizado", function(){
-    return "No es mayor de edad";
+    foreach($productos as $product){
+        $imagen = DB::table('image_products')
+            ->select('image_products.url', 'products.id')
+            ->join('products', 'image_products.product_id', '=', 'products.id')
+            ->where('image_products.product_id', "=", $product->getAttribute('id'))
+            ->limit(1)
+            ->get();
+
+            $aux->setAttribute('url', $imagen[0]->url);
+            $aux->setAttribute('product_id', $imagen[0]->id);
+
+            array_push($imagenes, $aux);
+        }
+
+    // Combinar los datos en un solo array asociativo
+    $data = [
+        'productos' => $productos,
+        'images' => $imagenes
+    ];
+
+    return response()->json($data);
 });
