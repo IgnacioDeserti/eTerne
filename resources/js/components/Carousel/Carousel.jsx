@@ -5,18 +5,30 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import ProductDetailViewLink from './ProductDetailViewLink';
 import Footer from '../Footer/Footer';
+import axios from 'axios'
+import {Link} from 'react-router-dom'
+import { stringify } from 'postcss';
 
 const Carousel = () => {
   const [products, setProducts] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  
   useEffect(() => {
-    fetch('/productos')
+    const aux = document.createElement('script');
+    let src = "http://localhost:8000/productosReact";
+      aux.src = src;
+      document.body.appendChild(aux)
+
+    fetch(aux.src)
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error(error));
   }, []);
 
+  console.log("IMAGENES ABAJO ")
+  console.log(products.images);
+  
   const settings = {
     infinite: true,
     speed: 4000,
@@ -68,6 +80,7 @@ const Carousel = () => {
 
   const handleProductClick = (product) => {
     setSelectedProduct(product);
+    console.log(product);
   };
 
   return (
@@ -84,19 +97,24 @@ const Carousel = () => {
               className="carousel__slider"
               {...settings}
               draggable={false}>
-              {products.map((product) => (
+              {products.productos && products.productos.map((product) => (
                 <div
                   key={product.id}
                   className="carousel__slide"
                   onClick={() => handleProductClick(product)}
                 >
-                  <img
-                    className="carousel__image"
-                    src={photo[product.id]}
-                    alt={product.name}
-                  />
+                  {products.images && products.images.map((image) => {
+                  return image.product_id === product.id ? (
+                    <img
+                      key={image.id}
+                      className="carousel__image"
+                      src={image.url}
+                      alt={product.title}
+                    />
+                  ) : product.name;
+                })}
                   <h3 className="carousel__subtitle">{product.name}</h3>
-                  <p className="carousel__price">{product.price}$</p>
+                  <p className="carousel__price">{product.price}</p>
                 </div>
               ))}
             </Slider>
@@ -109,6 +127,7 @@ const Carousel = () => {
 };
 
 export default Carousel;
+
 
 const rootElement = document.getElementById('carousel');
 if (rootElement) {

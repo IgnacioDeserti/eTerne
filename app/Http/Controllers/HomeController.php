@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ImageProducts;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -11,28 +12,55 @@ class HomeController extends Controller
     public function index()
     {
         $productos = Product::all();
-        $photo = [];
+        $imagenes = [];
+        $aux = new ImageProducts;
+        foreach($productos as $product){
+            $imagen = DB::table('image_products')
+                ->select('image_products.url', 'products.id')
+                ->join('products', 'image_products.product_id', '=', 'products.id')
+                ->where('image_products.product_id', "=", $product->getAttribute('id'))
+                ->limit(1)
+                ->get();
 
-        $imagenes = DB::table('image_products')
-            ->join('products', 'image_products.product_id', '=', 'products.id')
-            ->select('image_products.url', 'products.id')
-            ->get();
+                $aux->setAttribute('url', $imagen[0]->url);
+                $aux->setAttribute('product_id', $imagen[0]->id);
 
-        foreach ($imagenes as $imagen) {
-            $photo[$imagen->id][] = $imagen->url;
-        }
+                array_push($imagenes, $aux);
+            }
 
         // Combinar los datos en un solo array asociativo
         $data = [
-            'productos' => $productos,
-            'photo' => $photo
+            'products' => $productos,
+            'images' => $imagenes
         ];
 
-        // Codificar el array como JSON
-        $jsonDatos = json_encode($data);
+        $jsonData = json_encode($data);
 
-        print_r($jsonDatos);
-
-        return view('welcome', compact('jsonDatos'));
+        return view('welcome', compact('jsonData'));
     }
+
+    public function images(){
+        $productos = Product::all();
+        $imagenes = [];
+
+        foreach($productos as $product){
+            $imagen = DB::table('image_products')
+                ->select('image_products.url', 'products.id')
+                ->join('products', 'image_products.product_id', '=', 'products.id')
+                ->where('image_products.product_id', "=", $product->getAttribute('id'))
+                ->limit(1)
+                ->get();
+
+                array_push($imagenes, $imagen);
+            }
+
+        // Combinar los datos en un solo array asociativo
+
+        // Codificar el array como JSOB
+        
+        $jsonImages = json_encode($imagenes);
+
+        return response()->json($imagenes);
+    }
+
 }
