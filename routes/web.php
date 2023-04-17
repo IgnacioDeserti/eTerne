@@ -73,7 +73,8 @@ Route::get('/productosReact', function() {
             $aux->setAttribute('url', $imagen[0]->url);
             $aux->setAttribute('product_id', $imagen[0]->id);
 
-            array_push($imagenes, $aux);
+            array_push($imagenes, $aux->getAttributes());
+
         }
 
     // Combinar los datos en un solo array asociativo

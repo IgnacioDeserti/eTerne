@@ -27,7 +27,7 @@ const Carousel = () => {
   }, []);
 
   console.log("IMAGENES ABAJO ")
-  console.log(products.images);
+  console.log(products);
   
   const settings = {
     infinite: true,
@@ -104,14 +104,14 @@ const Carousel = () => {
                   onClick={() => handleProductClick(product)}
                 >
                   {products.images && products.images.map((image) => {
-                  return image.product_id === product.id ? (
-                    <img
-                      key={image.id}
+                    return image.product_id === product.id ? (
+                      <img
+                      key={image.product_id}
                       className="carousel__image"
                       src={image.url}
                       alt={product.title}
-                    />
-                  ) : product.name;
+                      />
+                      ) : "";
                 })}
                   <h3 className="carousel__subtitle">{product.name}</h3>
                   <p className="carousel__price">{product.price}</p>
