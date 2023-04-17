@@ -1,0 +1,25 @@
+.back-button {
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    background-color: #3c3c3c;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken(#3c3c3c, 10%);
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 5px #3c3c3c;
+    }
+
+    @media only screen and (max-width: 768px) {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
+}

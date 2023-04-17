@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <button class="back-button" onclick="window.history.back()">Volver Atrás</button>
 </body>
 
 </html>

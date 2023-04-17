@@ -50,21 +50,16 @@ $alert-border-radius: 5px;
 	}
 }
 
-body {
-	background-color: #121212;
-}
-
 .general-box {
 	position: relative;
 	top: 80px;
 	@include properties-flex(column, center, left);
-	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
 	max-width: 450px;
 	margin: 0 auto;
 	padding: 40px;
-	background: rgba(28, 46, 80, 0.5);
+	background: rgba(6, 22, 51, 0.5);
 	box-sizing: border-box;
 	box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
 	border-radius: 10px;
@@ -162,6 +157,10 @@ body {
 
 	.btnIniciar {
 		margin-left: 19%;
+	}
+
+	a{
+		color: #000000;
 	}
 
 
