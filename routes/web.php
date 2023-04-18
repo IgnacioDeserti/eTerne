@@ -83,5 +83,5 @@ Route::get('/productosReact', function() {
         'images' => $imagenes
     ];
 
-    return response()->json($data);
+    return $data;
 });

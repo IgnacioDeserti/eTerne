@@ -11,32 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $productos = Product::all();
-        $imagenes = [];
-        $aux = new ImageProducts;
-        foreach($productos as $product){
-            $imagen = DB::table('image_products')
-                ->select('image_products.url', 'products.id')
-                ->join('products', 'image_products.product_id', '=', 'products.id')
-                ->where('image_products.product_id', "=", $product->getAttribute('id'))
-                ->limit(1)
-                ->get();
-
-                $aux->setAttribute('url', $imagen[0]->url);
-                $aux->setAttribute('product_id', $imagen[0]->id);
-
-                array_push($imagenes, $aux->getAttributes());
-            }
-
-        // Combinar los datos en un solo array asociativo
-        $data = [
-            'products' => $productos,
-            'images' => $imagenes
-        ];
-
-        $jsonData = json_encode($data);
-
-        return view('welcome', compact('jsonData'));
+        return view('welcome');
     }
 
     public function images(){
