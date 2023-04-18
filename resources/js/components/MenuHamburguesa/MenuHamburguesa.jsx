@@ -1,39 +1,42 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from 'react-router-dom';
 
 function HamburgerMenu() {
-    const [isOpen, setIsOpen] = useState(false);
 
-    // Lista de objetos que representan los elementos de tu menú
-    const menuItems = [
-        { label: "Nosotros", link: "#" },
-        { label: "Log in", link: "login" },
-        { label: "Register", link: "register" }
-    ];
+    const [menu, setMenu] = useState(false);
+    const [abierto, setAbierto] = useState(false);
+
+    const toggleMenu = () => {
+        setMenu(!menu);
+    }
+
+    function handleClick() {
+        setAbierto(!abierto);
+    }
 
     return (
-        <nav className="hamburger-menu">
-            {/* Botón hamburguesa */}
-            <button
-                className="menu-toggle"
-                onClick={() => setIsOpen(!isOpen)}
-                aria-label="Menu"
-            >
-                <FontAwesomeIcon icon={faBars} />
-            </button>
-
-            {/* Contenedor que muestra el menú completo */}
-            <div className={`nav-links ${isOpen ? "open" : ""}`}>
-                {menuItems.map(item => (
-                    <a key={item.label} href={item.link}>
-                        {item.label}
-                    </a>
-                ))}
+        <header className={`Cabecera ${menu ? 'Active' : ''}`}>
+            {/*<li><CartWidget /></li>*/}
+            <div className='containerBuscador'>
+                <form className='buscador'>
+                    <input type="text" placeholder="Buscar productos..." />
+                    <button className='submit' type="submit">Buscar</button>
+                </form>
             </div>
-        </nav>
-    );
+            <button onClick={() => { toggleMenu(); handleClick(); }} className={`Cabecera-button ${abierto ? "menuAbierto" : ''}`}>
+                <i className={`fa ${menu ? 'fa-times' : 'fa-bars'}`}></i>
+            </button>
+            <nav className={`Cabecera-nav ${menu ? 'isActive' : ''}`}>
+                <ul className="Cabecera-ul">
+                    <li className="Cabecera-li"><Link to='/'>Inicio</Link></li>
+                    <li className="Cabecera-li"><Link to='/productsSection'>Productos</Link></li>
+                    <li className="Cabecera-li"><a href="#a">Categoría</a></li>
+                    <li className="Cabecera-li"><a href="#a">Categoría</a></li>
+                </ul>
+            </nav>
+        </header>
+    )
 }
 
 export default HamburgerMenu;

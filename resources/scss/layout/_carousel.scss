@@ -1,6 +1,20 @@
 .carousel {
   text-align: center;
   padding: 50px;
+  min-height: 100vh;
+
+  &.modo-oscuro {
+		background-color: #333;
+		color: #f5f5f5;
+
+			img {
+				filter: brightness(0.75);
+			}
+
+      .slick-slide>div{
+        background-color: #b1b1b1;
+      }
+		}
 
   h2 {
     font-size: 2rem;
@@ -11,6 +25,10 @@
 
   .slick-list {
     margin: 0 -15px;
+  }
+
+  a{
+    text-decoration: none;
   }
 
   .slick-slide>div {
