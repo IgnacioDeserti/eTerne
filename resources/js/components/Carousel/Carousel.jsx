@@ -3,32 +3,28 @@ import ReactDOM from 'react-dom/client';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import ProductDetailViewLink from './ProductDetailViewLink';
+import ProductDetailViewLink from '../ProductDetailViewLink/ProductDetailViewLink';
 import Footer from '../Footer/Footer';
-import axios from 'axios'
-import {Link} from 'react-router-dom'
-import { stringify } from 'postcss';
+import { Link } from 'react-router-dom'
 
 const Carousel = () => {
   const [products, setProducts] = useState([]);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
-  
-  useEffect(() => {
-    const aux = document.createElement('script');
-    let src = "http://localhost:8000/productosReact";
-      aux.src = src;
-      document.body.appendChild(aux)
 
-    fetch(aux.src)
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error(error));
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/productosReact');
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchProducts();
   }, []);
 
-  console.log("IMAGENES ABAJO ")
-  console.log(products);
-  
   const settings = {
     infinite: true,
     speed: 4000,
@@ -62,7 +58,7 @@ const Carousel = () => {
         },
       },
       {
-        breakpoint: 410,
+        breakpoint: 425,
         settings: {
           slidesToShow: 0.8,
           slidesToScroll: 1,
@@ -71,7 +67,7 @@ const Carousel = () => {
       {
         breakpoint: 350,
         settings: {
-          slidesToShow: 0.7,
+          slidesToShow: 0.6,
           slidesToScroll: 1,
         },
       },
@@ -106,13 +102,13 @@ const Carousel = () => {
                   {products.images && products.images.map((image) => {
                     return image.product_id === product.id ? (
                       <img
-                      key={image.product_id}
-                      className="carousel__image"
-                      src={image.url}
-                      alt={product.title}
+                        key={image.product_id}
+                        className="carousel__image"
+                        src={image.url}
+                        alt={product.title}
                       />
-                      ) : "";
-                })}
+                    ) : "";
+                  })}
                   <h3 className="carousel__subtitle">{product.name}</h3>
                   <p className="carousel__price">{product.price}</p>
                 </div>
