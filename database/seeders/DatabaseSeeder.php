@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {    
-        product::factory(5)->create();
+        //product::factory(5)->create();
+
+        $this->call(RoleSeeder::class);
     }
 }

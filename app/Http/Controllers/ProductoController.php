@@ -5,13 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProduct;
 use App\Models\Category;
 use App\Models\product;
-use App\Models\ProductXCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
-
+use App\Models\ProductXCategory;
 
 class ProductoController extends Controller{
     
@@ -21,10 +19,6 @@ class ProductoController extends Controller{
         $jsonProducts = json_encode($productos);
 
         return view('productos.index', compact('productos'));
-    }
-
-    public function exhibition(){
-
     }
 
     public function create(){

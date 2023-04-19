@@ -11,9 +11,6 @@ class FileController extends Controller{
         $file->file('photo')->store('product-photos');
     }
     
-    public function download($name){
-
-    }
 }
 
 
