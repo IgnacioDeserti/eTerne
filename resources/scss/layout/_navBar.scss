@@ -1,116 +1,104 @@
-$menu-bg-color: #F8F8FF;
-$menu-text-color: #333333;
-$hamburguer-bg-color: transparent;
-$hamburguer-color: #333333;
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css');
 
-// Estilo para el contenedor del menú
-.menu-container {
-  background-color: $menu-bg-color;
-  @include properties-flex(row, flex-end,center);
+$color_1: #fff;
+$color_2: #333;
+$background-color_1: #053e80;
+$background-color_2: #3b3b3b;
+$background-color_3: #fff;
 
-  align-items: center;
-  padding: 20px;
-}
-
-// Estilo para los enlaces del menú
-.aNav {
-  color: $menu-text-color;
-  font-size: 16px;
-  margin-left: 20px;
-  text-decoration: none;
-}
-
-// Estilo para la hamburguesa
-.hamburguer-button {
-  display: block;
-  width: 30px;
-  height: 22.5px;
-  position: relative;
-  cursor: pointer;
-
-  span {
-    display: block;
+.Cabecera {
     width: 100%;
-    height: 2px;
-    background-color: $hamburguer-color;
-    position: absolute;
-    left: 0;
-    transition: transform 0.25s ease-in-out;
-    &::before,
-    &::after {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: $hamburguer-color;
-      position: absolute;
-      left: 0;
-      transition: transform 0.25s ease-in-out;
-    }
-    &::before {
-      top: -6px;
-    }
-    &::after {
-      bottom: -6px;
-    }
-  }
+    background-color: $background-color_1;
+    padding: 1em;
+    @include properties-flex(row, flex-end, center);
+    color: $color_1;
 
-  // Agrega la clase "active" cuando se haga clic en la hamburguesa
-  &.active {
-    span {
-      &::before {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
-      &::after {
-        transform: rotate(-45deg) translate(5px, -5px);
-      }
-      transform: rotate(45deg);
-    }
-  }
-}
 
-// Estilo para el menú desplegable en dispositivos móviles
-.mobile-menu {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  right: 0;
-  background-color: $menu-bg-color;
-  z-index: 10;
-  display: none;
+    .Cabecera-ul {
+        @include properties-flex(row, center, center);
+        list-style: none;
+        background-color: $background-color_1;
 
-  ul {
-    list-style: none;
-    padding: 0;
+        .Cabecera-li {
+            margin: 0 .5em;
+            display: block;
+            color: $color_1;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.8s;
+            text-decoration: none;
+            border-radius: 10%;
 
-    li {
-      margin-top: 10px;
-
-      a {
-        color: $menu-text-color;
-        font-size: 18px;
-        text-decoration: none;
-        display: block;
-        padding: 10px;
-        transition: background-color 0.25s ease-in-out;
-      }
-
-      // Agrega estilo al elemento activo
-      &:first-child {
-        margin-top: 0;
-      }
-      &.active {
-        a {
-          background-color: darken($menu-bg-color, 10%);
+            &:hover {
+                background-color: #2e88ee;
+            }
         }
-      }
     }
-  }
+
+    .Cabecera-button {
+        display: none;
+        border: none;
+        background-color: transparent;
+        color: white;
+        font-size: 24px;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
 }
 
-// Styles for the active mobile menu
-.active {
-  .mobile-menu {
-    display: block;
-  }
+@media screen and (max-width:768px) {
+    .Cabecera {
+        .Cabecera-button {
+            position: relative;
+            display: flex;
+            top: 0%;
+        }
+
+        .Cabecera-nav {
+            width: 100%;
+            @include properties-flex(row, center, center);
+            height: 0vh;
+            opacity: 0;
+            overflow: hidden;
+            transition: all .5s ease;
+        }
+
+        .Cabecera-nav.isActive {
+            position: relative;
+            top: -1.5rem;
+            height: 21vh;
+            opacity: 1;
+        }
+
+        .menuAbierto {
+            position: relative;
+            top: -3rem;
+            z-index: 99;
+            left: 2%;
+        }
+
+        .Cabecera-ul {
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+
+            .Cabecera-li {
+                width: 50%;
+                margin: .5em 0;
+            }
+        }
+    }
+
+    .Cabecera.Active {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }

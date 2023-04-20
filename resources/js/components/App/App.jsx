@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Home from '../Home/Home';
-import ProductsSection from "../ProductsSection/ProductsSection";
-import ProductDetailViewLink from '../ProductDetailViewLink/ProductDetailViewLink';
+/* import ProductsSection from "../ProductsSection/ProductsSection";
+ */import ProductDetailViewLink from '../ProductDetailViewLink/ProductDetailViewLink';
 import Footer from '../Footer/Footer';
 import '../../../scss/main.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';

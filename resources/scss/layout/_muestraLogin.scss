@@ -59,7 +59,7 @@ $alert-border-radius: 5px;
 	max-width: 450px;
 	margin: 0 auto;
 	padding: 40px;
-	background: rgba(6, 22, 51, 0.5);
+	background: rgb(34 34 34);
 	box-sizing: border-box;
 	box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
 	border-radius: 10px;
@@ -159,8 +159,13 @@ $alert-border-radius: 5px;
 		margin-left: 19%;
 	}
 
-	a{
-		color: #000000;
+	a {
+		color: #bbbbbb;
+
+		&:hover {
+			transition: all ease 0.8s;
+			color: #03e9f4;
+		}
 	}
 
 
@@ -175,8 +180,7 @@ $alert-border-radius: 5px;
 	top: 1rem;
 
 	.containerFlex {
-		display: flex;
-		flex-direction: row;
+		@include properties-flex(row, center, center);
 	}
 
 	.checkbox {
@@ -197,14 +201,4 @@ $alert-border-radius: 5px;
 		position: relative;
 		top: 0.5rem;
 	}
-}
-
-.alert {
-	display: flex;
-	align-items: center;
-	border: 2px solid darken($alert-background, 10%);
-	padding: $alert-padding;
-	background-color: $alert-background;
-	color: $alert-text-color;
-	border-radius: $alert-border-radius;
 }

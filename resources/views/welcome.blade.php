@@ -12,22 +12,33 @@
 </head>
 
 <body>
-    <div id="menu-container" class="menu-container">
-        @if (Route::has('login'))
-            @auth
-                <a href="{{ url('/dashboard') }}" class="aNav">Dashboard</a>
-            @else
-                <a href="{{ route('login') }}" class="aNav">Log in</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="aNav">Register</a>
-                @endif
-            @endauth
-        @endif
+    <div id="menu-container">
+        <header class="Cabecera">
+            <nav class="Cabecera-nav">
+                <ul class="Cabecera-ul">
+                    @if (Route::has('login'))
+                        @auth
+                            <a href="{{ url('/dashboard') }}" class="Cabecera-li">Dashboard</a>
+                        @else
+                            <a href="{{ route('login') }}" class="Cabecera-li">Log in</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="Cabecera-li">Register</a>
+                            @endif
+                        @endauth
+                    @endif
+                    <a href="{{ route('register') }}" class="Cabecera-li">Productos</a>
+                </ul>
+            </nav>
+            <button class="Cabecera-button">
+                <i class="fa fa-bars"></i>
+            </button>
+        </header>
     </div>
-
     <div id="carousel"></div>
-    <!-- <div id="products-section"></div> -->
+    <div id="products-section"></div>
+    <div id="footer"></div>
 </body>
 
 </html>

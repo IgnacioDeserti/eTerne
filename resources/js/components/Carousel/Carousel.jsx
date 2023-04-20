@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import ProductDetailViewLink from '../ProductDetailViewLink/ProductDetailViewLink';
-import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom'
 
 const Carousel = () => {
@@ -117,7 +116,6 @@ const Carousel = () => {
           </>
         )}
       </div>
-      <Footer />
     </>
   );
 };

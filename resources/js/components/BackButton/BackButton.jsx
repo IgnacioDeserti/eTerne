@@ -9,8 +9,5 @@ const BackButton = ({ onClick }) => {
     );
 };
 
-BackButton.propTypes = {
-    onClick: PropTypes.func.isRequired,
-};
 
 export default BackButton;

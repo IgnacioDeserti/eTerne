@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom/client';
-import ItemCount from "../ItemCount/ItemCount";
-import ProductDetail from "../ProductDetail/ProductDetail";
+import { Link } from "react-router-dom";
 
 const ProductsSection = () => {
   const [products, setProducts] = useState([]);
@@ -19,13 +18,9 @@ const ProductsSection = () => {
           <img src={product.image} alt={product.title} />
           <h2>{product.title}</h2>
           <p className="price">${parseFloat(product.price).toFixed(2)}</p>
-
-          <ProductDetail product={product}/>
-          <ItemCount
-            initial={0}
-            stock={10}
-            onAdd={(quantity) => console.log("Cantidad agregada ", quantity)}
-          />
+          <Link to={`/productDetailViewLink/${product.id}`}>
+            <button>Mostrar descripción</button>
+          </Link>
         </div>
       ))}
     </div>
