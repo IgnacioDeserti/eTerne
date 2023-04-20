@@ -1,30 +1,116 @@
-// Define las variables
-$navbar-height: 50px;
-$nav-link-color: #333;
-$nav-link-hover-color: #505050;
-$nav-link-transition-speed: 0.5s;
+$menu-bg-color: #F8F8FF;
+$menu-text-color: #333333;
+$hamburguer-bg-color: transparent;
+$hamburguer-color: #333333;
 
-// Estilo para el contenedor del navbar
-.containerNavbar {
-    position: relative;
-    @include properties-flex(row, flex-end, center);
-    gap: 5px;
-    flex-wrap: wrap;
-    height: $navbar-height;
+// Estilo para el contenedor del menú
+.menu-container {
+  background-color: $menu-bg-color;
+  @include properties-flex(row, flex-end,center);
+
+  align-items: center;
+  padding: 20px;
 }
 
-// Estilo para los enlaces dentro del navbar
+// Estilo para los enlaces del menú
 .aNav {
-    margin: 0 10px; // Agrega un margen a los lados de cada enlace
-    color: $nav-link-color;
-    background-color: rgba(133, 133, 133, 0.281);
-    padding: 5px;
-    border-radius: 20%;
-    transition: color $nav-link-transition-speed;
+  color: $menu-text-color;
+  font-size: 16px;
+  margin-left: 20px;
+  text-decoration: none;
+}
 
-    // Hover style para los enlaces dentro del navbar
-    &:hover {
-        color: $nav-link-hover-color;
-        transform: scale(1.1);
+// Estilo para la hamburguesa
+.hamburguer-button {
+  display: block;
+  width: 30px;
+  height: 22.5px;
+  position: relative;
+  cursor: pointer;
+
+  span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: $hamburguer-color;
+    position: absolute;
+    left: 0;
+    transition: transform 0.25s ease-in-out;
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: $hamburguer-color;
+      position: absolute;
+      left: 0;
+      transition: transform 0.25s ease-in-out;
     }
+    &::before {
+      top: -6px;
+    }
+    &::after {
+      bottom: -6px;
+    }
+  }
+
+  // Agrega la clase "active" cuando se haga clic en la hamburguesa
+  &.active {
+    span {
+      &::before {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      &::after {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+      transform: rotate(45deg);
+    }
+  }
+}
+
+// Estilo para el menú desplegable en dispositivos móviles
+.mobile-menu {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background-color: $menu-bg-color;
+  z-index: 10;
+  display: none;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin-top: 10px;
+
+      a {
+        color: $menu-text-color;
+        font-size: 18px;
+        text-decoration: none;
+        display: block;
+        padding: 10px;
+        transition: background-color 0.25s ease-in-out;
+      }
+
+      // Agrega estilo al elemento activo
+      &:first-child {
+        margin-top: 0;
+      }
+      &.active {
+        a {
+          background-color: darken($menu-bg-color, 10%);
+        }
+      }
+    }
+  }
+}
+
+// Styles for the active mobile menu
+.active {
+  .mobile-menu {
+    display: block;
+  }
 }

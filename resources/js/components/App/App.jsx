@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Home from '../Home/Home';
-import NavBar from '../MenuHamburguesa/MenuHamburguesa';
 import ProductsSection from "../ProductsSection/ProductsSection";
 import ProductDetailViewLink from '../ProductDetailViewLink/ProductDetailViewLink';
 import Footer from '../Footer/Footer';
