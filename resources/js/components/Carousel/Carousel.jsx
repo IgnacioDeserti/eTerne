@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import ProductDetailViewLink from '../ProductDetailViewLink/ProductDetailViewLink';
-import { Link } from 'react-router-dom'
 
 const Carousel = () => {
   const [products, setProducts] = useState([]);
@@ -81,11 +79,6 @@ const Carousel = () => {
   return (
     <>
       <div className="carousel">
-        {selectedProduct ? (
-          <div>
-            <ProductDetailViewLink product={selectedProduct} />
-          </div>
-        ) : (
           <>
             <h2 className="carousel__title">Productos destacados</h2>
             <Slider
@@ -114,7 +107,6 @@ const Carousel = () => {
               ))}
             </Slider>
           </>
-        )}
       </div>
     </>
   );

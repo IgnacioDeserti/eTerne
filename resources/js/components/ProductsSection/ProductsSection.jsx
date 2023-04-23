@@ -1,35 +1,50 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from 'react-dom/client';
-import { Link } from "react-router-dom";
-
-const ProductsSection = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((response) => response.json())
-      .then((data) => setProducts(data));
-  }, []);
-
-  return (
-    <div className={`products-section`}>
-      {products.map((product) => (
-        <div className="product" key={product.id}>
-          <img src={product.image} alt={product.title} />
-          <h2>{product.title}</h2>
-          <p className="price">${parseFloat(product.price).toFixed(2)}</p>
-          <Link to={`/productDetailViewLink/${product.id}`}>
-            <button>Mostrar descripción</button>
-          </Link>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default ProductsSection;
-
-const rootElement = document.getElementById('products-section');
-if (rootElement) {
-    ReactDOM.createRoot(rootElement).render(<ProductsSection />);
+// Función para realizar la petición a la API y obtener los productos
+function fetchProducts() {
+  return fetch("https://fakestoreapi.com/products")
+    .then((response) => response.json());
 }
+
+// Función para crear el elemento DOM para un producto individual
+function createProductElement(product) {
+  const productDiv = document.createElement("div");
+  productDiv.className = "product";
+
+  const img = document.createElement("img");
+  img.src = product.image;
+  img.alt = product.title;
+  productDiv.appendChild(img);
+
+  const h2 = document.createElement("h2");
+  h2.textContent = product.title;
+  productDiv.appendChild(h2);
+
+  const priceP = document.createElement("p");
+  priceP.className = "price";
+  priceP.textContent = `$ ${parseFloat(product.price).toFixed(2)}`;
+  productDiv.appendChild(priceP);
+
+  const button = document.createElement("button");
+  button.textContent = "Mostrar descripción";
+  button.onclick = () => {
+    window.location.href = `/productDetailViewLink/${product.id}`;
+  };
+  productDiv.appendChild(button);
+
+  return productDiv;
+}
+
+// Función para renderizar la sección de productos en el DOM
+function renderProductsSection(products) {
+  const productsSection = document.getElementById("products-section");
+  productsSection.className = "products-section";
+
+  products.forEach((product) => {
+    const productElement = createProductElement(product);
+    productsSection.appendChild(productElement);
+  });
+}
+
+// Inicialización: obtener productos y renderizar la sección de productos
+fetchProducts().then((products) => {
+  renderProductsSection(products);
+});
