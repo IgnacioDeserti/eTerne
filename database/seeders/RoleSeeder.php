@@ -17,14 +17,14 @@ class RoleSeeder extends Seeder
         $role1 = Role::create(['name' => "admin"]);
         $role2 = Role::create(['name' => "client"]);
 
-        Permission::create(['name' => 'productos.index']);
-        Permission::create(['name' => 'productos.add']);
-        Permission::create(['name' => 'productos.edit']);
-        Permission::create(['name' => 'productos.show']);
+        Permission::create(['name' => 'productos.index'])->assignRole($role1);
+        Permission::create(['name' => 'productos.add'])->assignRole($role1);
+        Permission::create(['name' => 'productos.edit'])->assignRole($role1);
+        Permission::create(['name' => 'productos.show'])->assignRole($role1);
 
-        Permission::create(['name' => 'categories.index']);
-        Permission::create(['name' => 'categories.add']);
-        Permission::create(['name' => 'categories.edit']);
-        Permission::create(['name' => 'categories.show']);
+        Permission::create(['name' => 'categories.index'])->assignRole($role1);
+        Permission::create(['name' => 'categories.add'])->assignRole($role1);
+        Permission::create(['name' => 'categories.edit'])->assignRole($role1);
+        Permission::create(['name' => 'categories.show'])->assignRole($role1);
     }
 }

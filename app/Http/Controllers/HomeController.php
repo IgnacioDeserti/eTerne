@@ -28,10 +28,6 @@ class HomeController extends Controller
 
                 array_push($imagenes, $imagen);
             }
-
-        // Combinar los datos en un solo array asociativo
-
-        // Codificar el array como JSOB
         
         $jsonImages = json_encode($imagenes);
 

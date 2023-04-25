@@ -14,4 +14,5 @@ import './components/Login-Register/LoginBox';
 import './components/ProductsSection/ProductsSection';
 import './components/Carousel/Carousel';
 import './components/Footer/Footer';
+import './components/Button/Button';
 

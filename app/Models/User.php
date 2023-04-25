@@ -10,17 +10,18 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 
 class User extends Authenticatable
 {
+    use HasRoles;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -65,9 +66,13 @@ class User extends Authenticatable
 
     // relacion muchos a muchos
 
-    public function roles(){
-        return $this->belongsToMany('App\Models\Role');
-    }
+    /**
+     * Summary of roles
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    /**
+    * The roles that belong to the user.
+    */
 
     // relacion uno a uno polimorfica
     public function image(){
@@ -77,4 +82,5 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany('App\Models\Order');
     }
+    
 }

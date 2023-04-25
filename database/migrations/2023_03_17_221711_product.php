@@ -19,8 +19,6 @@ return new class extends Migration
             $table->integer('idCategory');
             $table->integer('stock');
             $table->float('price');
-            $table->binary('photo1')->nullable();
-            $table->binary('video')->nullable();
             $table->timestamps();
         });
     }

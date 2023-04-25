@@ -13,7 +13,7 @@
     @endforeach
 
     @foreach ($videos as $video)
-        <iframe src="{{($video->url)}}" frameborder="0" height= "150px" width= "150px"></iframe>
+        <iframe src="{{asset($video->url)}}" frameborder="0" height= "150px" width= "150px"></iframe>
     @endforeach <br>
     <p><strong>Precio: {{$producto->price}}</strong></p><br><br>
     

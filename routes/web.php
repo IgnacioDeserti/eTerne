@@ -7,6 +7,8 @@ use App\Http\Controllers\CategoryController;
 use App\Mail\ContactanosMailable;
 use App\Models\ImageProducts;
 use App\Models\Product;
+use App\Models\VideoProducts;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -16,6 +18,8 @@ use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Http\Controllers\ClientController;
+
 
 
 /*
@@ -30,14 +34,6 @@ use Illuminate\Support\Str;
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::resource('productos', ProductoController::class);
-
-Route::get('contactanos', [ContactanosController::class, 'index'])->name('contactanos.index');
-
-Route::post('contactanos', [ContactanosController::class, 'store'])->name('contactanos.store');
-
-Route::resource('categories', CategoryController::class);
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -48,12 +44,21 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::resource('productos', ProductoController::class);
+});
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::resource('categories', CategoryController::class);
 });
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::resource('user', ClientController::class);
+});
+
+Route::get('contactanos', [ContactanosController::class, 'index'])->name('contactanos.index');
+
+Route::post('contactanos', [ContactanosController::class, 'store'])->name('contactanos.store');
 
 Route::get('/productosReact', function() {
     header('Access-Control-Allow-Origin: *');
@@ -74,14 +79,54 @@ Route::get('/productosReact', function() {
             $aux->setAttribute('product_id', $imagen[0]->id);
 
             array_push($imagenes, $aux->getAttributes());
-
         }
 
-    // Combinar los datos en un solo array asociativo
-    $data = [
+    // Devolver los datos como un objeto JSON
+    return response()->json([
         'productos' => $productos,
         'images' => $imagenes
-    ];
-
-    return $data;
+    ]);
 });
+
+Route::get('/clientShow/{id}', function($id){
+    header('Access-Control-Allow-Origin: *');
+    header('Content-Type: application/json');
+    $photo = new ImageProducts;
+    $video = new VideoProducts;
+    $photos = [];
+    $videos = [];
+        $producto = Product::findOrFail($id);
+
+        $aux = DB::table('image_products')
+            ->select('image_products.url', 'products.id')
+            ->join('products', 'image_products.product_id', '=', 'products.id')
+            ->where('image_products.product_id', "=", $id)
+            ->get();
+
+            foreach($aux as $a){
+                $photo->url = $a->url;
+                $photo->product_id = $a->id;
+
+                array_push($photos, $photo->getAttributes());
+            }
+
+            $aux2 = DB::table('video_products')
+            ->select('video_products.url', 'products.id')
+            ->join('products', 'video_products.product_id', '=', 'products.id')
+            ->where('video_products.product_id', "=", $id)
+            ->get();
+
+            foreach($aux2 as $a){
+                $video->url = $a->url;
+                $video->product_id = $a->id;
+
+                array_push($videos, $video->getAttributes());
+            }            
+
+            return view('client.exhibition', compact('producto', 'photos', 'videos'));
+});
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

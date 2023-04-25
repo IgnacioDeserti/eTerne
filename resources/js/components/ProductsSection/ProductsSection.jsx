@@ -1,6 +1,6 @@
 // Función para realizar la petición a la API y obtener los productos
 function fetchProducts() {
-  return fetch("https://fakestoreapi.com/products")
+  return fetch("http://localhost:8000/productosReact")
     .then((response) => response.json());
 }
 
@@ -10,12 +10,12 @@ function createProductElement(product) {
   productDiv.className = "product";
 
   const img = document.createElement("img");
-  img.src = product.image;
-  img.alt = product.title;
-  productDiv.appendChild(img);
+  img.src = product.img;
+  img.alt = product.name;
+  productDiv.appendChild(image);
 
   const h2 = document.createElement("h2");
-  h2.textContent = product.title;
+  h2.textContent = product.name;
   productDiv.appendChild(h2);
 
   const priceP = document.createElement("p");
@@ -26,7 +26,7 @@ function createProductElement(product) {
   const button = document.createElement("button");
   button.textContent = "Mostrar descripción";
   button.onclick = () => {
-    window.location.href = `/productDetailViewLink/${product.id}`;
+    window.location.href = `http://localhost:8000/clientShow/${product.id}`;
   };
   productDiv.appendChild(button);
 

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import Button from "../Button/Button";
 
 const Carousel = () => {
   const [products, setProducts] = useState([]);
@@ -79,34 +80,35 @@ const Carousel = () => {
   return (
     <>
       <div className="carousel">
-          <>
-            <h2 className="carousel__title">Productos destacados</h2>
-            <Slider
-              className="carousel__slider"
-              {...settings}
-              draggable={false}>
-              {products.productos && products.productos.map((product) => (
-                <div
-                  key={product.id}
-                  className="carousel__slide"
-                  onClick={() => handleProductClick(product)}
-                >
-                  {products.images && products.images.map((image) => {
-                    return image.product_id === product.id ? (
-                      <img
-                        key={image.product_id}
-                        className="carousel__image"
-                        src={image.url}
-                        alt={product.title}
-                      />
-                    ) : "";
-                  })}
-                  <h3 className="carousel__subtitle">{product.name}</h3>
-                  <p className="carousel__price">{product.price}</p>
-                </div>
-              ))}
-            </Slider>
-          </>
+        <>
+          <h2 className="carousel__title">Productos destacados</h2>
+          <Slider
+            className="carousel__slider"
+            {...settings}
+            draggable={false}>
+            {products.productos && products.productos.map((product) => (
+              <div
+                key={product.id}
+                className="carousel__slide"
+                onClick={() => handleProductClick(product)}
+              >
+                {products.images && products.images.map((image) => {
+                  return image.product_id === product.id ? (
+                    <img
+                      key={image.product_id}
+                      className="carousel__image"
+                      src={image.url}
+                      alt={product.title}
+                    />
+                  ) : "";
+                })}
+                <h3 className="carousel__subtitle">{product.name}</h3>
+                <p className="carousel__price">{product.price}</p>
+                <Button product={product} />
+              </div>
+            ))}
+          </Slider>
+        </>
       </div>
     </>
   );

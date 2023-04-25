@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         //product::factory(5)->create();
 
         $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }
