@@ -1,50 +1,71 @@
-// Función para realizar la petición a la API y obtener los productos
+// Obtener la referencia al elemento <div> en el que renderizaremos los productos
+const productsElement = document.getElementById('products-section');
+
+// Crear una función para hacer la petición con fetch
 function fetchProducts() {
-  return fetch("http://localhost:8000/productosReact")
-    .then((response) => response.json());
+  fetch('http://localhost:8000/productosReact')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(product) {
+      renderProductsSection(product);
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
 }
 
 // Función para crear el elemento DOM para un producto individual
-function createProductElement(product) {
-  const productDiv = document.createElement("div");
-  productDiv.className = "product";
+function createProductElement(product, images) {
+  // Crear los elementos DOM necesarios para un producto individual
+  const productElement = document.createElement('div');
+  const nameElement = document.createElement('h2');
+  const descriptionElement = document.createElement('p');
+  const priceElement = document.createElement('span');
 
-  const img = document.createElement("img");
-  img.src = product.img;
-  img.alt = product.name;
-  productDiv.appendChild(image);
+  // Configurar las propiedades de los elementos creados
+  nameElement.textContent = product.name;
+  descriptionElement.textContent = product.description;
+  priceElement.textContent = product.price;
 
-  const h2 = document.createElement("h2");
-  h2.textContent = product.name;
-  productDiv.appendChild(h2);
+  // Agregar los elementos creados al elemento del producto
+  productElement.appendChild(nameElement);
+  productElement.appendChild(descriptionElement);
+  productElement.appendChild(priceElement);
 
-  const priceP = document.createElement("p");
-  priceP.className = "price";
-  priceP.textContent = `$ ${parseFloat(product.price).toFixed(2)}`;
-  productDiv.appendChild(priceP);
+  // Crear y agregar los elementos de imagen para el producto actual
+  for(let i = 0; i < images.length; i++){
+    const imageElement = document.createElement('img');
+    imageElement.src = images[i].url;
+    productElement.appendChild(imageElement);
+  }
 
-  const button = document.createElement("button");
-  button.textContent = "Mostrar descripción";
-  button.onclick = () => {
-    window.location.href = `http://localhost:8000/clientShow/${product.id}`;
-  };
-  productDiv.appendChild(button);
-
-  return productDiv;
+  return productElement;
 }
-
 // Función para renderizar la sección de productos en el DOM
 function renderProductsSection(products) {
-  const productsSection = document.getElementById("products-section");
-  productsSection.className = "products-section";
+  // Crear un fragmento de documento para agregar todos los elementos de producto a la vez
+  const productsFragment = document.createDocumentFragment();
+  // Crear y agregar elementos individuales para cada producto
+  for (let i = 0; i < products.productos.length; i++) {
+    const images = [];
+    const product = products.productos[i];
+    for(let j = 0; j < products.images.length; j++){
+      if(product.id == products.images[j].product_id){
+        const image = products.images[j];
+        images.push(image);
+      }
+    }
+    const productElement = createProductElement(product, images);
 
-  products.forEach((product) => {
-    const productElement = createProductElement(product);
-    productsSection.appendChild(productElement);
-  });
+    productsFragment.appendChild(productElement);
+  }
+
+  // Agregar todos los elementos de producto al elemento contenedor en el DOM
+  productsElement.appendChild(productsFragment);
 }
 
-// Inicialización: obtener productos y renderizar la sección de productos
-fetchProducts().then((products) => {
-  renderProductsSection(products);
+// Llamar a la función fetchProducts() cuando la página termina de cargar
+window.addEventListener('load', function() {
+  fetchProducts();
 });

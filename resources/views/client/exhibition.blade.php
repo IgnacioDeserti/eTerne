@@ -4,7 +4,7 @@
 @section('title', $producto->name)
 
 @section('content')
-    <h1>BIENVENIDO AL PRODUCTO <br><br> {{$producto->name}}</h1>
+    <h1>BIENVENIDO AL PRODUCTO<br><br> {{$producto->name}}</h1>
     
     @for ($i = 0; $i < count($photos); $i++)
         <img src="{{asset($photos[$i]['url'])}}" height="150px" width="150px">
@@ -30,6 +30,5 @@
 
         <button type="submit">Eliminar</button>
     </form>
-    
 
 @endsection

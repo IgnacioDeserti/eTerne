@@ -14,7 +14,7 @@ const Carousel = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch('http://localhost:8000/productosReact');
-        const data = await response.json();
+        const data = await response.json();        
         setProducts(data);
       } catch (error) {
         console.error(error);
