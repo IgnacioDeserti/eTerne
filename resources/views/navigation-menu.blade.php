@@ -14,7 +14,12 @@
             'name' => 'Categorias',
             'route' => route('categories.index'),
             'active' => request()->routeIs('categories.index')
-        ]        
+        ],
+        [
+            'name' => "Admin",
+            'route' => route("admin.index"),
+            'active' => request()->routeIs('admin.index')
+        ]
 
 ];
 @endphp

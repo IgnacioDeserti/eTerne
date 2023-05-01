@@ -9,14 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Contracts\Auth\CanResetPassword;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Traits\HasRoles;
-
 
 class User extends Authenticatable
 {
-    use HasRoles;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -63,24 +58,4 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    // relacion muchos a muchos
-
-    /**
-     * Summary of roles
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    /**
-    * The roles that belong to the user.
-    */
-
-    // relacion uno a uno polimorfica
-    public function image(){
-        return $this->morphOne('App\Models\Image', 'imageable');
-    }
-
-    public function orders(){
-        return $this->hasMany('App\Models\Order');
-    }
-    
 }
