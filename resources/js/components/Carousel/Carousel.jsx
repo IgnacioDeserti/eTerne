@@ -6,15 +6,13 @@ import Slider from "react-slick";
 import Button from "../Button/Button";
 
 const Carousel = () => {
-  const [products, setProducts] = useState([]);
-
   const [selectedProduct, setSelectedProduct] = useState(null);
-
+  const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch('http://localhost:8000/productosReact');
-        const data = await response.json();        
+        const data = await response.json();
         setProducts(data);
       } catch (error) {
         console.error(error);
@@ -103,7 +101,7 @@ const Carousel = () => {
                   ) : "";
                 })}
                 <h3 className="carousel__subtitle">{product.name}</h3>
-                <p className="carousel__price">{product.price}</p>
+                <p className="carousel__price">${product.price}</p>
                 <Button product={product} />
               </div>
             ))}

@@ -1,0 +1,51 @@
+#loader-wrapper {
+    position: absolute;
+	@include properties-flex(none, center, center);
+	width: 100%;
+	height: 100vh;
+    z-index: 2;
+    background-color: #EFEEEC;
+
+    img {
+        width: 100%;
+		max-width: 400px;
+		height: auto;
+		border-radius: 50%;
+        animation: parpadeo 1s ease-out infinite;
+    }
+}
+
+.hidden{
+    display: none;
+}
+
+@keyframes parpadeo {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+	#loader-wrapper {
+		img {
+			width: 70%;
+			max-width: 300px;
+		}
+	}
+}
+@media only screen and (max-width: 576px) {
+	#loader-wrapper {
+		img {
+			width: 80%;
+			max-width: 200px;
+		}
+	}
+}

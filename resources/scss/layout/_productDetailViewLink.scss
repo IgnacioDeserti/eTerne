@@ -6,33 +6,32 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
   .product-details__image {
+    position: relative;
     width: 100%;
-    /* para que la imagen ocupe todo el ancho y sea proporcional */
     max-width: 500px;
-    height: auto;
-    /* para que la imagen sea proporcional */
-    object-fit: contain;
     margin-right: 0;
-    /* para quitar el margen derecho en mobile */
     margin-bottom: 20px;
-    /* para separar la imagen del texto en mobile */
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.521);
+    top: 5px;
+    width: 95%;
   }
 
   .product-details__info {
     width: 100%;
+    @include properties-flex(column, center, center);
     /* para que el texto ocupe todo el ancho */
 
     .product-details__title {
       font-size: 28px;
-      /* reducimos un poco el tamaño en mobile */
+      width: 90%;
       margin-top: 0;
       margin-bottom: 10px;
-      /* reducimos un poco el espacio debajo en mobile */
       color: #333;
       font-weight: bold;
       letter-spacing: -0.5px;
       text-align: center;
-      /* para centrar el título en mobile */
+      padding: 5px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.521);
     }
 
     .product-details__description {
@@ -48,20 +47,14 @@
 
     .product-details__price-container {
       @include properties-flex(row, center, center);
-      /* colocamos el texto debajo del botón en mobile */
       margin-bottom: 30px;
       width: 100%;
-      /* para que ocupe todo el ancho del contenedor */
 
       .product-details__buy-button {
         margin-left: 0;
-        /* quitamos el margen izquierdo en mobile */
         margin-bottom: 20px;
-        /* separamos un poco más el botón del precio en mobile */
         padding: 12px 24px;
-        /* reducimos un poco el padding en mobile */
         font-size: 18px;
-        /* reducimos un poco el tamaño en mobile */
         top: 10px;
       }
     }
@@ -71,42 +64,36 @@
 @media (min-width: 835px) {
   .product-details {
     flex-direction: row;
-    /* volvemos al diseño original a partir de tabletas en adelante */
     padding: 30px;
 
     .product-details__image {
       margin-right: 50px;
       margin-bottom: 0;
+      border-radius: 5%;
     }
 
     .product-details__info {
       width: 50%;
 
       .product-details__title {
+        text-align: center;
         font-size: 32px;
         margin-bottom: 20px;
-        text-align: left;
-        /* volvemos el texto a la izquierda */
       }
 
       .product-details__description {
         text-align: left;
-        /* volvemos el texto a la izquierda */
+        @include properties-flex(column, center, center);
+
+        .containerRating {
+          @include properties-flex(row, center, center);
+        }
       }
 
-      .product-details__price-container {
-        flex-direction: row;
-        /* volvemos los elementos en línea */
-        width: auto;
-        /* quitamos el ancho fijo */
-
-        .product-details__buy-button {
-          margin-left: 20px;
-          margin-bottom: 0;
-          /* volvemos el botón alineado con el precio */
-          padding: 14px 28px;
-          font-size: 20px;
-        }
+      .product-details__buy-button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 15px;
       }
     }
   }
