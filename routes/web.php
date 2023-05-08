@@ -8,17 +8,10 @@ use App\Mail\ContactanosMailable;
 use App\Models\ImageProducts;
 use App\Models\Product;
 use App\Models\VideoProducts;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
-use App\Models\User;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CartController;
 
 
 
@@ -45,11 +38,11 @@ Route::middleware([
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
-    Route::resource('productos', ProductoController::class);
+    Route::resource('productos', ProductoController::class)->middleware('role:admin');
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
-    Route::resource('categories', CategoryController::class);
+    Route::resource('categories', CategoryController::class)->middleware('role:admin');
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
@@ -126,5 +119,23 @@ Route::get('/clientShow/{id}', function($id){
             return view('client.exhibition', compact('producto', 'photos', 'videos'));
 });
 
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {    
+    Route::post('/add', [CartController::class, 'add'])->name('cart.store');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::post('/update', [CartController::class, 'update'])->name('cart.update');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
+});
+

@@ -18,17 +18,14 @@
     
     <p>Descripcion: {{$producto->description}}</p><br><br>
 
-    <a href="">Añadir al carrito</a><br><br>
-    
-    <a href="{{route('productos.index')}}">Volver al menu de productos</a> <br><br>
-
-    <a href="{{route('productos.edit', $producto)}}">Editar Producto</a><br><br>
-
-    <form action="{{route('productos.destroy', $producto)}}" method="post">
+    <form action="{{route('cart.store')}}" method="POST">
         @csrf
-        @method('delete')
-
-        <button type="submit">Eliminar</button>
+        <input type="hidden" name="id" value="{{$producto->id}}">
+        <input type="hidden" name="name" value="{{$producto->name}}">
+        <input type="hidden" name="price" value="{{$producto->price}}">
+        <label for="">Ingrese cantidad</label>
+        <input type="number" name="quantity"> 
+        <button type="submit">Agregar al carrito</button>
     </form>
 
 @endsection
