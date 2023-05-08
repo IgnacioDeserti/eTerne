@@ -1,3 +1,6 @@
+@extends('layouts.plantilla')
+@livewireScripts
 
-
-@livewire('search-users', ['user' => $user], key($user->id))
+@section('content')
+    @livewire('search-users')
+@endsection

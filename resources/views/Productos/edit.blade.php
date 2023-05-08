@@ -27,7 +27,7 @@
 
         <label>
             descripcion
-            <input type="textarea" name="description" value="{{$producto->description}}" required value="{{old('description')}}">
+            <input type="textarea" name="description" value="{{$producto->description}}" required>
         </label>
 
         @error('description')
@@ -40,7 +40,7 @@
         <label>
             categoria
             <select name="idCategory">
-                <option value="">Seleccione categoria</option>
+                <option value="{{old('idCategory')}}">Seleccione categoria</option>
                 @foreach ($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
@@ -57,7 +57,7 @@
 
         <label>
             stock
-            <input type="number" name="stock" value="{{$producto->stock}}" required value="{{old('stock')}}">
+            <input type="number" name="stock" value="{{$producto->stock}}" required>
         </label>
 
         @error('stock')
@@ -70,7 +70,7 @@
 
         <label>
             precio
-            <input type="number" step="any" name="price" value="{{old('price')}}" required>
+            <input type="number" step="any" name="price" required value="{{$producto->stock}}">
         </label>
 
         @error('price')

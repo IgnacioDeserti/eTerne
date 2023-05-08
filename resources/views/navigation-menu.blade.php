@@ -40,7 +40,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @foreach ($navLinks as $link)
                         <x-nav-link href="{{ $link['route'] }}" :active="$link['active']">
-                            {{ __($link['name']) }}
+                            @if (strcmp($link['route'], 'dashboard') == 0)
+                                @can('admin')
+                                    {{ __($link['name']) }} 
+                                @endcan
+                            @endif
                         </x-nav-link>
                     @endforeach
 
@@ -168,7 +172,11 @@
         <div class="pt-2 pb-3 space-y-1">
             @foreach ($navLinks as $link)
                 <x-responsive-nav-link href="{{ $link['route'] }}" :active="$link['active']">
-                    {{ __($link['name']) }}
+                    @if (strcmp($link['route'], 'dashboard') == 0)
+                            {{-- @if (auth()->user()->hasRole('admin')) --}}
+                                    {{ __($link['name']) }} 
+                            {{-- @endif --}}
+                    @endif
                 </x-responsive-nav-link>
             @endforeach
         </div>

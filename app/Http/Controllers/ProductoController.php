@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 use App\Models\ProductXCategory;
 
 class ProductoController extends Controller{
-    
+
     public function index(){
         $productos = product::all();
 
