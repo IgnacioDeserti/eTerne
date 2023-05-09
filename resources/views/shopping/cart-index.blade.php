@@ -1,108 +1,117 @@
 @extends('layouts.plantilla')
+
 @props(['cartCollection', 'mensaje'])
 
 @section('content')
-
     @if (isset($mensaje))
-        {{$mensaje}}
+        {{ $mensaje }}
     @endif
 
-    <div class="container" style="margin-top: 80px">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Tienda</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Cart</li>
-            </ol>
+    <div class="container">
+        <nav aria-label="">
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link">Tienda</a></li>
+                <li class="nav-item" aria-current="page">Cart</li>
+            </ul>
         </nav>
-        @if(session()->has('success_msg'))
+
+        @if (session()->has('success_msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session()->get('success_msg') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <button type="button" class="botonesCart" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
         @endif
-        @if(session()->has('alert_msg'))
+
+        @if (session()->has('alert_msg'))
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 {{ session()->get('alert_msg') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <button type="button" class="botonesCart" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
         @endif
-        @if(count($errors) > 0)
-            @foreach($errors0>all() as $error)
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+        @if (count($errors) > 0)
+            @foreach ($errors0 > all() as $error)
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ $error }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <button type="button" class="botonesCart" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
             @endforeach
         @endif
-        <div class="row justify-content-center">
-            <div class="col-lg-7">
-                <br>
-                @if(\Cart::getTotalQuantity()>0)
-                    <h4>{{ \Cart::getTotalQuantity()}} Producto(s) en el carrito</h4><br>
+
+        <div class="cart-content">
+            <div class="cart-items">
+                @if (\Cart::getTotalQuantity() > 0)
+                    <h4>{{ \Cart::getTotalQuantity() }} Producto(s) en el carrito</h4>
                 @else
-                    <h4>No Product(s) In Your Cart</h4><br>
-                    <a href="/" class="btn btn-dark">Continue en la tienda</a>
+                    <h4>No Product(s) In Your Cart</h4>
+                    <a href="/" class="">Continue en la tienda</a>
                 @endif
 
-                @foreach($cartCollection as $item)
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <img src="{{ $item->attributes->image }}" class="img-thumbnail" width="200" height="200">
+                @foreach ($cartCollection as $item)
+                    <div class="cart-item">
+                        <div class="containerImage">
+                            <img src="{{ $item->attributes->image }}" class="" width="200" height="200">
                         </div>
-                        <div class="col-lg-5">
+
+                        <div class="cart-item-info">
                             <p>
-                                <b><a href="/shop/{{ $item->attributes->slug }}">{{ $item->name }}</a></b><br>
-                                <b>Price: </b>${{ $item->price }}<br>
-                                <b>Sub Total: </b>${{ \Cart::get($item->id)->getPriceSum() }}<br>
+                                <b><a href="/shop/{{ $item->attributes->slug }}">{{ $item->name }}</a></b>
+                                <br>
+                                <b>Price: </b>${{ $item->price }}
+                            </p>
+                            <p>
+                                <b>Sub Total: </b>${{ \Cart::get($item->id)->getPriceSum() }}
                                 {{--                                <b>With Discount: </b>${{ \Cart::get($item->id)->getPriceSumWithConditions() }} --}}
                             </p>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="row">
-                                <form action="{{ route('cart.update') }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <div class="form-group row">
-                                        <input type="hidden" value="{{ $item->id}}" id="id" name="id">
-                                        <input type="number" class="form-control form-control-sm" value="{{ $item->quantity }}"
-                                            id="quantity" name="quantity" style="width: 70px; margin-right: 10px;">
-                                        <button class="btn btn-secondary btn-sm" style="margin-right: 25px;"><i class="fa fa-edit"></i></button>
-                                    </div>
-                                </form>
-                                <form action="{{ route('cart.remove') }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" value="{{ $item->id }}" id="id" name="id">
-                                    <button class="btn btn-dark btn-sm" style="margin-right: 10px;"><i class="fa fa-trash"></i></button>
-                                </form>
-                            </div>
+
+                        <div class="cart-item-quantity">
+                            <form action="{{ route('cart.update') }}" method="POST">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" value="{{ $item->id }}" id="id" name="id">
+
+                                <label class="labelCant" for="quantity">Cantidad:</label>
+                                <input type="number" class="" value="{{ $item->quantity }}" id="quantity"
+                                    name="quantity">
+                                <button class="botonesCart"><i class="fa fa-edit"></i></button>
+
+                            </form>
+
+                            <form action="{{ route('cart.remove') }}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="hidden" value="{{ $item->id }}" id="id" name="id">
+                                <button class="botonesCart"><i class="fa fa-trash"></i></button>
+                            </form>
                         </div>
                     </div>
-                    <hr>
                 @endforeach
-                @if(count($cartCollection)>0)
+
+                @if (count($cartCollection) > 0)
                     <form action="{{ route('cart.clear') }}" method="POST">
                         {{ csrf_field() }}
-                        <button class="btn btn-secondary btn-md">Borrar Carrito</button> 
+                        <button class="botonesCart">Borrar Carrito</button>
                     </form>
                 @endif
             </div>
-            @if(count($cartCollection)>0)
-                <div class="col-lg-5">
-                    <div class="card">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><b>Total: </b>${{ \Cart::getTotal() }}</li>
-                        </ul>
-                    </div>
-                    <br><a href="/" class="btn btn-dark">Continue en la tienda</a>
-                    <a href="/checkout" class="btn btn-success">Proceder al Checkout</a>
+
+            @if (count($cartCollection) > 0)
+                <div class="cart-total">
+                    <ul>
+                        <li><b>Total: </b>${{ \Cart::getTotal() }}</li>
+                        <li>
+                            <a href="/" class="">Continue en la tienda</a>
+                            <a href="/checkout" class="">Proceder al Checkout</a>
+                        </li>
+                    </ul>
                 </div>
             @endif
         </div>
-        <br><br>
     </div>
-@endsection 
+@endsection

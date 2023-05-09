@@ -37,4 +37,4 @@ const fetchProduct = async (productId) => {
 };
 
 const productId = window.productId;
-fetchProducts(productId);
+/* fetchProducts(productId); */

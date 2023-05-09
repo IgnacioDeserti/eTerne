@@ -1,0 +1,223 @@
+$font-size-base: 1rem;
+$button-padding-y: 0.375rem;
+$button-padding-x: 0.75rem;
+$button-font-size: 1rem;
+
+.container {
+    max-width: 1200px;
+    margin: 10px auto;
+    min-height: 100vh;
+}
+
+.cart-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .cart-items {
+        width: 100%;
+
+        .cart-item {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 2vw;
+
+            .containerImage {
+                width: fit-content;
+                img {
+                    max-width: 100%;
+                    height: auto;
+                    margin-right: 1vw;
+                    min-width: 9rem;
+                    border-radius: 5%;
+                }
+            }
+
+            .cart-item-details {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: stretch;
+                flex-grow: 1;
+                margin-left: 2vw;
+
+                @media (max-width: 767px) {
+                    flex-basis: 100%;
+                    margin-left: 0;
+                    margin-top: 2vw;
+                }
+            }
+
+            .cart-item-info {
+                flex-grow: 1;
+                margin-bottom: 1vw;
+
+                p {
+                    margin-top: 0;
+                    margin-bottom: 0.5vw;
+                    font-size: calc(#{$font-size-base} * 0.9);
+
+                    @media (max-width: 767px) {
+                        font-size: #{$font-size-base};
+                    }
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #007bff;
+                    font-weight: bold;
+
+                    @media (max-width: 767px) {
+                        font-size: calc(#{$button-font-size} * 0.9);
+                    }
+                }
+            }
+
+            .cart-item-quantity {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-end;
+
+                form {
+                    display: flex;
+                    margin-bottom: 0;
+
+                    input {
+                        max-width: 7vw;
+                        margin: 0 2vw 0 1vw;
+                        font-size: calc(#{$font-size-base} * 0.9);
+
+                        @media (max-width: 767px) {
+                            max-width: 60px;
+                            margin-right: 1vw;
+                        }
+                    }
+
+                    .botonesCart {
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+
+                        i {
+                            font-size: calc(#{$button-font-size} * 0.8);
+                        }
+                    }
+
+                    .labelCant {
+                        @include properties-flex(row, center, center);
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .cart-total {
+        flex-basis: calc(33.33% - 1vw);
+        background-color: #f8f9fa;
+        padding: 2vw;
+        margin-left: 2vw;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 0.5vw;
+
+                p {
+                    font-size: calc(#{$font-size-base} * 0.9);
+
+                    @media (max-width: 767px) {
+                        font-size: #{$font-size-base};
+                    }
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #fff;
+                    background-color: #28a745;
+                    padding: 1vw 1.5vw;
+                    border-radius: 0.5vw;
+                    margin-right: 1vw;
+                    font-weight: bold;
+                    font-size: calc(#{$button-font-size} * 0.9);
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+
+                .botonesCart {
+                    background-color: #dc3545;
+                    color: #fff;
+                    padding: 1vw 1.5vw;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    border-radius: 0.5vw;
+                    font-weight: bold;
+                    font-size: calc(#{$button-font-size} * 0.9);
+                }
+            }
+        }
+
+        @media (max-width: 767px) {
+            margin-top: 2vw;
+            flex-basis: 100%;
+            font-size: #{$font-size-base};
+
+            ul {
+                li {
+                    p {
+                        margin: 0.5vw 0;
+                    }
+
+                    a {
+                        padding: 1vw 1.5vw;
+                        font-size: #{$font-size-base};
+                    }
+
+                    .botonesCart {
+                        padding: 1vw 1.5vw;
+                        font-size: #{$font-size-base};
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        .cart-items {
+            .cart-item {
+                flex-direction: row;
+                gap: 2vw;
+
+                .containerImage {
+                    img {
+                        margin-right: 1vw;
+                    }
+                }
+
+                .cart-item-details {
+                    margin-left: 0;
+                    margin-top: 2vw;
+
+                    form {
+                        margin-top: 1vw;
+                    }
+                }
+
+                .cart-item-quantity {
+                    margin-top: 1vw;
+                    gap: 10px;
+                }
+            }
+        }
+    }
+}

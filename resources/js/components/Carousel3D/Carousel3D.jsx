@@ -36,7 +36,6 @@ const ImageGallery = () => {
 
 export default ImageGallery;
 
-
 const rootElement = document.getElementById('imageGallery');
 if (rootElement) {
     ReactDOM.createRoot(rootElement).render(<ImageGallery />);

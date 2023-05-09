@@ -114,7 +114,6 @@ const Carousel = () => {
 
 export default Carousel;
 
-
 const rootElement = document.getElementById('carousel');
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(<Carousel />);

@@ -11,47 +11,50 @@
     @vite(['resources/css/app.css', 'resources/scss/main.scss', 'resources/js/app.js'])
 </head>
 
-<body>
-    @foreach($errors->all() as $error)
+<body onload="showContent()">
+    @foreach ($errors->all() as $error)
         <li>{{ $error }}</li>
     @endforeach
-    <div id="menu-container">
-        <header class="Cabecera">
-            <nav class="Cabecera-nav">
-                <ul class="Cabecera-ul">
-                    @if (Route::has('login'))
-                        @auth
-                            @if (auth()->user()->hasRole('admin'))
-                                <a href="{{ url('/dashboard') }}" class="Cabecera-li">Dashboard</a>
-                            @endif
-                            <a href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')" class="Cabecera-li">
-                                {{ __('Profile') }}
-                            </a>
-                            <form method="POST" action="{{ route('logout') }}" x-data>
-                                @csrf
-                                <a href="{{ route('logout') }}"
-                                @click.prevent="$root.submit();" class="Cabecera-li">
-                                {{ __('Log Out') }}
-                            </a>
-                        </form>
-                        @else
-                        <a href="{{ route('login') }}" class="Cabecera-li">Log in</a>
-                        @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="Cabecera-li">Register</a>
+    <div id="loader-wrapper"></div>
+    <div id="content-wrapper" class="hidden">
+        <div id="menu-container">
+            <header class="Cabecera">
+                <nav class="Cabecera-nav">
+                    <ul class="Cabecera-ul">
+                        @if (Route::has('login'))
+                            @auth
+                                @if (auth()->user()->hasRole('admin'))
+                                    <a href="{{ url('/dashboard') }}" class="Cabecera-li">Dashboard</a>
+                                @endif
+                                <a href="{{ route('profile.show') }}" :active="request() - > routeIs('profile.show')"
+                                    class="Cabecera-li">
+                                    {{ __('Profile') }}
+                                </a>
+                                <form method="POST" action="{{ route('logout') }}" x-data>
+                                    @csrf
+                                    <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="Cabecera-li">
+                                        {{ __('Log Out') }}
+                                    </a>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}" class="Cabecera-li">Log in</a>
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="Cabecera-li">Register</a>
+                                @endif
+                            @endauth
                         @endif
-                        @endauth
-                        @endif    
-                        <a href="{{route('cart.index')}}" class="Cabecera-li">Carrito</a>
-                </ul>
-            </nav>
-            <button class="Cabecera-button">
-                <i class="fa fa-bars"></i>
-            </button>
-        </header>
+                        <a href="{{ route('cart.index') }}" class="Cabecera-li">Carrito</a>
+                    </ul>
+                </nav>
+                <button class="Cabecera-button">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </header>
+        </div>
+        <div id="carousel"></div>
+        <div id="imageGallery"></div>
+        <div id="footer"></div>
     </div>
-    <div id="carousel"></div>
-    <div id="products-section"></div>
-    <div id="footer"></div>
 </body>
 
 </html>
