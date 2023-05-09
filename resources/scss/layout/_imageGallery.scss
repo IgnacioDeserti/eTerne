@@ -47,7 +47,10 @@
             left: 25%;
             transform: rotateY(calc(var(--i) * 90deg)) translateZ(calc(15rem + 15.625vw));
             transform-origin: center;
-            border-radius: 5%;
+
+            img {
+                border-radius: 5%;
+            }
 
             @media (max-width: 768px) {
                 transform: rotateY(calc(var(--i) * 90deg)) translateZ(calc(5rem + 15.625vw));
