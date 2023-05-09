@@ -30,7 +30,7 @@ $icon-size: 30px;
     }
 
     .contact-info {
-        @include properties-flex(row, center, center);
+        @include properties-flex(row, none, center);
         flex-wrap: wrap;
         margin-right: 20px;
 

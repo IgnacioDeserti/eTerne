@@ -17,17 +17,14 @@ const ImageGallery = () => {
         fetchProducts();
     }, []);
 
-    console.log(products.images)
-    /* products.images.map((image) => {
-        console.log(image)
-    }) */
-
     return (
         <div className={`containerCarousel3d`}>
             <h2 className="carousel__title">Ultimos Productos</h2>
             <div className="carousel3d">
                 {products.images && products.images.map((image) => (
-                    <div key={image.product_id} className="containerImg" style={{ '--i': image.product_id, '--img': `url(${image.url})` }}></div>
+                    <div key={image.product_id} className="containerImg" style={{ '--i': image.product_id }}>
+                        <img src={image.url} alt="Product" />
+                    </div>
                 ))}
             </div>
         </div>
