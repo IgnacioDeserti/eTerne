@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+    public function updatingSearch(){
+        $this->reset();
+    }
+
     public function shop()
     {
         $products = Product::all();
@@ -27,7 +31,7 @@ class CartController extends Controller
     public function remove(Request $request){
         \Cart::remove($request->id);
         $mensaje = "El item se removió con éxito";
-        return $this->cart($mensaje);
+        return redirect()->route('cart.index')->with('success', $mensaje);
     }
 
     public function add(Request $request){
@@ -51,7 +55,8 @@ class CartController extends Controller
                 'image' => $aux->getAttribute('url'),
             )
         ));
-        return $this->cart();
+        $mensaje = '¡Producto agregado al carrito!';
+        return redirect()->route('cart.index')->with('success', $mensaje);
     }
 
     public function update(Request $request){
@@ -63,15 +68,13 @@ class CartController extends Controller
                 ),
         ));
         $mensaje = 'El carrito se actualizó!';
-        return $this->cart($mensaje);
+        return redirect()->route('cart.index')->with('success', $mensaje);
     }
 
     public function clear(){
         \Cart::clear();
         $mensaje = 'El carrito se vació';
-        return $this->cart($mensaje);
+        return redirect()->route('cart.index')->with('success', $mensaje);
     }
-
- 
 
 }
