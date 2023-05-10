@@ -73,8 +73,7 @@ $background-color_3: #fff;
 
         .Cabecera-nav.isActive {
             position: relative;
-            top: -1.5rem;
-            height: 21vh;
+            height: fit-content;
             opacity: 1;
         }
 
@@ -91,7 +90,7 @@ $background-color_3: #fff;
             width: 100%;
 
             .Cabecera-li {
-                width: 50%;
+                width: 100%;
                 margin: .5em 0;
             }
         }

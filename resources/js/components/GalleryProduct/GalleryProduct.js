@@ -1,4 +1,4 @@
-const main_img = document.querySelector('.main_img');
+/* const main_img = document.querySelector('.main_img');
 const thumbnails = document.querySelectorAll('.thumbnail');
 const productsContainer = document.querySelector('.products-container');
 
@@ -9,27 +9,30 @@ thumbnails.forEach(thumb => {
         this.classList.add('active');
         main_img.src = this.src;
     });
-});
+}); */
 
 const fetchProduct = async (productId) => {
-    const url = `http://localhost:8000/productosReact/${productId}`;
     try {
-        const response = await fetch(url);
+        const response = await fetch(`http://localhost:8000/productosReact`);
         const productData = await response.json();
-        console.log(productData);
-        // Recorremos cada producto y creamos un div con su información
-        productsData.forEach(product => {
-            const productDiv = document.createElement('div');
-            const image = document.createElement('img');
-            image.src = product.image;
-            const name = document.createElement('h2');
-            name.innerText = product.name;
-            const price = document.createElement('p');
-            price.innerText = product.price;
-            productDiv.appendChild(image);
-            productDiv.appendChild(name);
-            productDiv.appendChild(price);
-            productsContainer.appendChild(productDiv);
+        productData.productos.forEach(function (product) {
+            if (product.id === productId) {
+                console.log(product)
+                if (productData.images) {
+                    productData.images.forEach(function (image) {
+                        if (image.product_id === productId) {
+                            console.log(image.url)
+                            let galleryProduct = document.getElementById("galleryProduct")
+                            let img = document.createElement('img');
+                            img.setAttribute('key', image.product_id);
+                            img.setAttribute('class', 'product-details__image');
+                            img.setAttribute('src', image.url);
+                            img.setAttribute('alt', product.name);
+                            galleryProduct.appendChild(img);
+                        }
+                    });
+                }
+            }
         });
     } catch (error) {
         console.error(error);
@@ -37,4 +40,4 @@ const fetchProduct = async (productId) => {
 };
 
 const productId = window.productId;
-/* fetchProducts(productId); */
+fetchProduct(productId);
