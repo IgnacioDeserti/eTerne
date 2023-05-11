@@ -7,12 +7,16 @@ use App\Http\Controllers\CategoryController;
 use App\Mail\ContactanosMailable;
 use App\Models\ImageProducts;
 use App\Models\Product;
+use App\Models\User;
 use App\Models\VideoProducts;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CartController;
-
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\GoogleController;
+use Google\Client as GoogleClient;
 
 
 /*
@@ -26,6 +30,28 @@ use App\Http\Controllers\CartController;
 |
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/google-auth/redirect', function(){
+    return Socialite::driver('google')->redirect();
+});
+
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
+
+Route::get('/connect-to-google-drive', [GoogleController::class, 'connectToGoogleDrive']);
+
+Route::get('/google-drive-callback', function() {
+    $googleClient = new GoogleClient();
+    $googleClient->setClientId(env('GOOGLE_CLIENT_ID'));
+    $googleClient->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
+    $googleClient->setRedirectUri(env('GOOGLE_REDIRECT'));
+    $googleClient->authenticate(request()->get('code'));
+    session()->put('google_token', $googleClient->getAccessToken());
+    return redirect('/connect-to-google-drive');
+});
+
 
 Route::middleware([
     'auth:sanctum',
@@ -116,7 +142,7 @@ Route::get('/clientShow/{id}', function($id){
                 array_push($videos, $video->getAttributes());
             }            
 
-            return view('client.exhibition', compact('producto', 'photos', 'videos'));
+            return compact('producto', 'photos', 'videos');
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
