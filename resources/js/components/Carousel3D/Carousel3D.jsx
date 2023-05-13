@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 
-const ImageGallery = () => {
+const Carousel3D = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -31,9 +31,9 @@ const ImageGallery = () => {
     );
 };
 
-export default ImageGallery;
+export default Carousel3D;
 
-const rootElement = document.getElementById('imageGallery');
+const rootElement = document.getElementById('carousel3D');
 if (rootElement) {
-    ReactDOM.createRoot(rootElement).render(<ImageGallery />);
+    ReactDOM.createRoot(rootElement).render(<Carousel3D />);
 }

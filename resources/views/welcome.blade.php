@@ -21,7 +21,7 @@
     <div id="loader-wrapper"></div>
     <div id="content-wrapper" class="hidden">
         <div id="carousel"></div>
-        <div id="imageGallery"></div>
+        <div id="carousel3D"></div>
         <div id="footer"></div>
     </div>
 </body>

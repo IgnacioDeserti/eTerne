@@ -3,13 +3,7 @@
 @section('title', $producto->name)
 @section('content')
     <div class="product-details">
-        @foreach ($photos as $photo)
-            {{-- <img class="product-details__image" src="{{ asset($photo->url) }}" height="150px" width="150px"> --}}
-            <div id="galleryProduct"></div>
-        @endforeach
-        @foreach ($videos as $video)
-            <iframe src="{{ asset($video->url) }}" frameborder="0" height="150px" width="150px"></iframe>
-        @endforeach
+        <div id="imageGallery"></div>
         <div class="product-details__info">
             <h1 class="product-details__title">{{ $producto->name }}</h1>
             <div class="product-details__description">{{ $producto->description }}</div>
