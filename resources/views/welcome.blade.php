@@ -1,4 +1,5 @@
-@extends('layouts.muestraProductos')
+@props(['categories'])
+@extends('layouts.muestraProductos', compact('categories'))
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">

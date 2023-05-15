@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\ImageProducts;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +12,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        $categories = Category::all();
+        return view('welcome', compact('categories'));
     }
 
     public function images(){
@@ -32,6 +34,11 @@ class HomeController extends Controller
         $jsonImages = json_encode($imagenes);
 
         return response()->json($imagenes);
+    }
+
+    public function productsByCategory($id){
+        $productos = Product::where('category_id', $id)->get();
+        return response()->json($productos);
     }
 
 }

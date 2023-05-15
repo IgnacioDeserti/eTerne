@@ -1,3 +1,4 @@
+@props(['categories'])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
 <body>
     <!-- header -->
 
-    @include('layouts.partials.headerAll')
+    @include('layouts.partials.headerAll', compact('categories'))
 
     @yield('content')
 

@@ -2,6 +2,9 @@
     <header class="Cabecera">
         <nav class="Cabecera-nav">
             <ul class="Cabecera-ul">
+                @foreach ($categories as $category)
+                    <ul><a href="{{route('home.productsByCategory', $category->id)}}">{{$category->name}}</a></ul>
+                @endforeach
                 @if (Route::has('login'))
                     @auth
                         @if (auth()->user()->hasRole('admin'))

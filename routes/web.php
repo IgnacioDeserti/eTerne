@@ -68,6 +68,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('categories/filterProducts/{id}', [CategoryController::class, 'filterProducts'])->middleware('role:admin')->name('categories.filterProducts');
 });
 
+Route::get('home/productsByCategory/{id}', [HomeController::class, 'productsByCategory'])->name('home.productsByCategory');
+
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::resource('productos', ProductoController::class)->middleware('role:admin');
 });
