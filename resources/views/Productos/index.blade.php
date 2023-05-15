@@ -1,5 +1,6 @@
 @extends('layouts.plantilla')
 @props(['productos'])
+@livewireScripts
 
 @section('title', 'Index')
 
@@ -7,10 +8,6 @@
     <h1>BIENVENIDO A LOS PRODUCTOS</h1>
     <div class="containerListaProductos">
         <a href="{{ route('productos.create') }}">Agregar Producto</a><br><br>
-        <ul>
-            @foreach ($productos as $item)
-                <li><a href="{{ route('productos.show', $item) }}">{{ $item->name }}</a></li><br>
-            @endforeach
-        </ul>
+        @livewire('search-products')
     </div>
 @endsection

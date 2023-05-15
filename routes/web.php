@@ -64,6 +64,10 @@ Route::middleware([
     })->middleware('role:admin')->name('dashboard');
 });
 
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::get('categories/filterProducts/{id}', [CategoryController::class, 'filterProducts'])->middleware('role:admin')->name('categories.filterProducts');
+});
+
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::resource('productos', ProductoController::class)->middleware('role:admin');
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategory;
 use App\Http\Requests\StoreProduct;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Str;
 
@@ -47,6 +48,11 @@ class CategoryController extends Controller{
         $category->delete();
 
         return redirect()->route('categories.index');
+    }
+
+    public function filterProducts($id){
+        $category = Category::find($id);
+        return view('categories.filterProducts', compact('category'));
     }
 
 }
