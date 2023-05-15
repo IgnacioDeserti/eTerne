@@ -29,20 +29,21 @@ use Google\Client as GoogleClient;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/google-auth/redirect', function(){
+Route::get('/google-auth/redirect', function () {
     return Socialite::driver('google')->redirect();
 });
 
-Route::controller(GoogleController::class)->group(function(){
+Route::controller(GoogleController::class)->group(function () {
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
 
 Route::get('/connect-to-google-drive', [GoogleController::class, 'connectToGoogleDrive']);
 
-Route::get('/google-drive-callback', function() {
+Route::get('/google-drive-callback', function () {
     $googleClient = new GoogleClient();
     $googleClient->setClientId(env('GOOGLE_CLIENT_ID'));
     $googleClient->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
@@ -63,15 +64,15 @@ Route::middleware([
     })->middleware('role:admin')->name('dashboard');
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::resource('productos', ProductoController::class)->middleware('role:admin');
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::resource('categories', CategoryController::class)->middleware('role:admin');
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::resource('user', ClientController::class);
 });
 
@@ -79,14 +80,14 @@ Route::get('contactanos', [ContactanosController::class, 'index'])->name('contac
 
 Route::post('contactanos', [ContactanosController::class, 'store'])->name('contactanos.store');
 
-Route::get('/productosReact', function() {
+Route::get('/productosReact', function () {
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
     $productos = Product::all();
     $imagenes = [];
     $aux = new ImageProducts;
 
-    foreach($productos as $product){
+    foreach ($productos as $product) {
         $imagen = DB::table('image_products')
             ->select('image_products.url', 'products.id')
             ->join('products', 'image_products.product_id', '=', 'products.id')
@@ -94,11 +95,11 @@ Route::get('/productosReact', function() {
             ->limit(1)
             ->get();
 
-            $aux->setAttribute('url', $imagen[0]->url);
-            $aux->setAttribute('product_id', $imagen[0]->id);
+        $aux->setAttribute('url', $imagen[0]->url);
+        $aux->setAttribute('product_id', $imagen[0]->id);
 
-            array_push($imagenes, $aux->getAttributes());
-        }
+        array_push($imagenes, $aux->getAttributes());
+    }
 
     // Devolver los datos como un objeto JSON
     return response()->json([
@@ -107,61 +108,67 @@ Route::get('/productosReact', function() {
     ]);
 });
 
-Route::get('/clientShow/{id}', function($id){
+Route::get('/clientShow/{id}', function ($id) {
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
     $photo = new ImageProducts;
     $video = new VideoProducts;
     $photos = [];
     $videos = [];
-        $producto = Product::findOrFail($id);
+    $producto = Product::findOrFail($id);
 
-        $aux = DB::table('image_products')
-            ->select('image_products.url', 'products.id')
-            ->join('products', 'image_products.product_id', '=', 'products.id')
-            ->where('image_products.product_id', "=", $id)
-            ->get();
+    $aux = DB::table('image_products')
+        ->select('image_products.url', 'products.id')
+        ->join('products', 'image_products.product_id', '=', 'products.id')
+        ->where('image_products.product_id', "=", $id)
+        ->get();
 
-            foreach($aux as $a){
-                $photo->url = $a->url;
-                $photo->product_id = $a->id;
+    foreach ($aux as $a) {
+        $photo->url = $a->url;
+        $photo->product_id = $a->id;
 
-                array_push($photos, $photo->getAttributes());
-            }
+        array_push($photos, $photo->getAttributes());
+    }
 
-            $aux2 = DB::table('video_products')
-            ->select('video_products.url', 'products.id')
-            ->join('products', 'video_products.product_id', '=', 'products.id')
-            ->where('video_products.product_id', "=", $id)
-            ->get();
+    $aux2 = DB::table('video_products')
+        ->select('video_products.url', 'products.id')
+        ->join('products', 'video_products.product_id', '=', 'products.id')
+        ->where('video_products.product_id', "=", $id)
+        ->get();
 
-            foreach($aux2 as $a){
-                $video->url = $a->url;
-                $video->product_id = $a->id;
+    foreach ($aux2 as $a) {
+        $video->url = $a->url;
+        $video->product_id = $a->id;
 
+<<<<<<< HEAD
                 array_push($videos, $video->getAttributes());
             }
 
             return view('client.exhibition', compact('producto', 'photos', 'videos'));
+=======
+        array_push($videos, $video->getAttributes());
+    }
+
+    return compact('producto', 'photos', 'videos');
+>>>>>>> 74c0218aef3f9f506c374bb98bcee00973d22624
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {    
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::post('/add', [CartController::class, 'add'])->name('cart.store');
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::post('/update', [CartController::class, 'update'])->name('cart.update');
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
 });
-
