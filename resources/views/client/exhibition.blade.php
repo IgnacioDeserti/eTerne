@@ -3,19 +3,10 @@
 @section('title', $producto->name)
 
 @section('content')
-    <div class="product-details">
-        <div class="imagenes">
-            @foreach ($photos as $photo)
-                <img src="{{ asset($photo['url']) }}" class="imagen" height="150px" width="150px">
-            @endforeach
-
-            @foreach ($videos as $video)
-                <iframe src="{{ asset($video['url']) }}" class="video" frameborder="0" height="150px" width="150px"></iframe>
-            @endforeach
-        </div>
-
-        <div class="product-details__info informacion">
-            <h1 class="product-details__title titulo">{{ $producto->name }}</h1>
+<div class="product-details">
+        <div id="imageGallery"></div>
+        <div class="product-details__info">
+            <h1 class="product-details__title">{{ $producto->name }}</h1>
             <p class="product-details__description">{{ $producto->description }}</p>
             <p class="precio"><strong>$</strong> {{ $producto->price }}</p>
             <form action="{{ route('cart.store') }}" method="POST" class="formulario">
@@ -30,4 +21,8 @@
             </form>
         </div>
     </div>
+</div>
+    <script>
+        window.productId = {{ $producto->id }};
+    </script>
 @endsection

@@ -17,6 +17,7 @@ const ImageGallery = () => {
       const response = await fetch(`http://localhost:8000/clientShow/${productId}`);
       const data = await response.json();
       setProductData(data);
+      console.log(data)
       setMainImg(`/${data.photos[0].url}`);
     } catch (error) {
       console.error(error);

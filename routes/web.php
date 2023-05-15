@@ -140,10 +140,48 @@ Route::get('/clientShow/{id}', function ($id) {
         $video->url = $a->url;
         $video->product_id = $a->id;
 
-                array_push($videos, $video->getAttributes());
-            }
+        array_push($videos, $video->getAttributes());
+    }
 
-            return view('client.exhibition', compact('producto', 'photos', 'videos'));
+    return compact('producto', 'photos', 'videos');
+});
+
+Route::get('/clientShowCarousel/{id}', function ($id) {
+    header('Access-Control-Allow-Origin: *');
+    header('Content-Type: application/json');
+    $photo = new ImageProducts;
+    $video = new VideoProducts;
+    $photos = [];
+    $videos = [];
+    $producto = Product::findOrFail($id);
+
+    $aux = DB::table('image_products')
+        ->select('image_products.url', 'products.id')
+        ->join('products', 'image_products.product_id', '=', 'products.id')
+        ->where('image_products.product_id', "=", $id)
+        ->get();
+
+    foreach ($aux as $a) {
+        $photo->url = $a->url;
+        $photo->product_id = $a->id;
+
+        array_push($photos, $photo->getAttributes());
+    }
+
+    $aux2 = DB::table('video_products')
+        ->select('video_products.url', 'products.id')
+        ->join('products', 'video_products.product_id', '=', 'products.id')
+        ->where('video_products.product_id', "=", $id)
+        ->get();
+
+    foreach ($aux2 as $a) {
+        $video->url = $a->url;
+        $video->product_id = $a->id;
+
+        array_push($videos, $video->getAttributes());
+    }
+
+    return view('client.exhibition', compact('producto', 'photos', 'videos'));
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {

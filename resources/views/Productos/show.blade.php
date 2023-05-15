@@ -1,5 +1,5 @@
 @extends('layouts.plantilla')
-@props(['photos', 'videos'])
+@props(['producto', 'photos', 'videos'])
 @section('title', $producto->name)
 @section('content')
     <div class="product-details">
@@ -8,7 +8,6 @@
             <h1 class="product-details__title">{{ $producto->name }}</h1>
             <div class="product-details__description">{{ $producto->description }}</div>
             <p>$<strong> {{ $producto->price }}</strong></p>
-            <button class="product-details__buy-button"><a href="">Añadir al carrito</a></button>
             <button class="product-details__buy-button"><a href="{{ route('productos.index') }}">Volver al menu de
                     productos</a></button>
             <button class="product-details__buy-button"><a href="{{ route('productos.edit', $producto) }}">Editar
