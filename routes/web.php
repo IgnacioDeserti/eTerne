@@ -140,17 +140,10 @@ Route::get('/clientShow/{id}', function ($id) {
         $video->url = $a->url;
         $video->product_id = $a->id;
 
-<<<<<<< HEAD
                 array_push($videos, $video->getAttributes());
             }
 
             return view('client.exhibition', compact('producto', 'photos', 'videos'));
-=======
-        array_push($videos, $video->getAttributes());
-    }
-
-    return compact('producto', 'photos', 'videos');
->>>>>>> 74c0218aef3f9f506c374bb98bcee00973d22624
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
