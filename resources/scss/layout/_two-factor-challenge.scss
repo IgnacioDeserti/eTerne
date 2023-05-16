@@ -3,18 +3,6 @@ $secondary-color: #f2f7fb;
 $tertiary-color: #1565c0;
 $contrasting-color: if(lightness($secondary-color) > 50, darken($secondary-color, 20%), lighten($secondary-color, 20%));
 
-//Las variables del fondo
-$dot-color: rgba(0, 0, 0, 0.07);
-$dot-size: 5px;
-$dot-gap: 10px;
-
-// El patrón de puntos
-body {
-  background-color: $dot-color;
-  background-image: radial-gradient($dot-color $dot-size, transparent 0);
-  background-size: $dot-gap $dot-gap;
-}
-
 .container {
   max-width: 600px;
   margin: auto;

@@ -3,97 +3,60 @@
 @section('title', 'Edit')
 
 @section('content')
-    
     <h1>BIENVENIDO A EDITAR EL PRODUCTO</h1>
-
-    <form action="{{route('productos.update', $producto)}}" method="post" enctype="multipart/form-data">
-
-        @csrf
-
-        @method('put')
-
-        <label>
-            nombre
-            <input type="text" name="name" value="{{$producto->name}}" required value="{{old('name')}}">
-        </label>
-
-        @error('name')
-            <br>
-                <small>{{$message}}</small>
-            <br>
-        @enderror
-
-        <br><br>
-
-        <label>
-            descripcion
-            <input type="textarea" name="description" value="{{$producto->description}}" required>
-        </label>
-
-        @error('description')
-        <br>
-            <small>{{$message}}</small>
-        <br>
-        @enderror
-
-        <br><br>
-        <label>
-            categoria
-            <select name="idCategory">
-                <option value="{{old('idCategory')}}">Seleccione categoria</option>
-                @foreach ($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
-                @endforeach
-            </select>
-        </label>
-
-        @error('idCategory')
-            <br>
-                <small>{{$message}}</small>
-            <br>
-        @enderror
-
-        <br><br>
-
-        <label>
-            stock
-            <input type="number" name="stock" value="{{$producto->stock}}" required>
-        </label>
-
-        @error('stock')
-            <br>
-                <small>{{$message}}</small>
-            <br>
-        @enderror
-
-        <br><br>
-
-        <label>
-            precio
-            <input type="number" step="any" name="price" required value="{{$producto->stock}}">
-        </label>
-
-        @error('price')
-            <br>
-                <small>{{$message}}</small>
-            <br>
-        @enderror
-        
-        <br><br>
-
-        <label>
-            foto
-            <input type="file" name="image[]" value="{{old('image[]')}}"  multiple>
-        </label>
-        <br><br>
-        <label>
-            video
-            <input type="file" name="video[]" value="{{old('video[]')}}"  multiple>
-        </label>
-
-        <br><br>
-
-        <button type="submit">Editar</button>
-    </form>
-
+    <div class="containerFormAdd">
+        <form action="{{ route('productos.update', $producto) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('put')
+            <label>
+                Nombre
+                <input type="text" name="name" value="{{ $producto->name }}" required value="{{ old('name') }}">
+            </label>
+            @error('name')
+                <small>{{ $message }}</small>
+            @enderror
+            <label>
+                Descripcion
+                <input type="textarea" name="description" value="{{ $producto->description }}" required>
+            </label>
+            @error('description')
+                <small>{{ $message }}</small>
+            @enderror
+            <label>
+                Categoria
+                <select name="idCategory">
+                    <option value="{{ old('idCategory') }}">Seleccione categoria</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </label>
+            @error('idCategory')
+                <small>{{ $message }}</small>
+            @enderror
+            <label>
+                Stock
+                <input type="number" name="stock" value="{{ $producto->stock }}" required>
+            </label>
+            @error('stock')
+                <small>{{ $message }}</small>
+            @enderror
+            <label>
+                Precio
+                <input type="number" step="any" name="price" required value="{{ $producto->stock }}">
+            </label>
+            @error('price')
+                <small>{{ $message }}</small>
+            @enderror
+            <label>
+                Foto
+                <input type="file" name="image[]" value="{{ old('image[]') }}" multiple>
+            </label>
+            <label>
+                Video
+                <input type="file" name="video[]" value="{{ old('video[]') }}" multiple>
+            </label>
+            <button type="submit">Editar</button>
+        </form>
+    </div>
 @endsection

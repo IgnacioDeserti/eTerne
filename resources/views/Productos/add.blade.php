@@ -3,67 +3,44 @@
 @section('title', 'Add')
 
 @section('content')
-    
     <h1>BIENVENIDO A AGREGAR LOS PRODUCTOS</h1>
-
-    <form action="{{route('productos.store')}}" method="post" enctype="multipart/form-data">
-
+    <div class="containerFormAdd">
+    <form action="{{ route('productos.store') }}" method="post" enctype="multipart/form-data">
         @csrf
-
         <label>
-            nombre
-            <input type="text" name="name" required value="{{old('name')}}">
+            Nombre
+            <input type="text" name="name" required value="{{ old('name') }}">
         </label>
-
-        <br><br>
         <label>
-            descripcion
-            <input type="textarea" name="description" required value="{{old('desctription')}}">
+            Descripcion
+            <input type="textarea" name="description" required value="{{ old('desctription') }}">
         </label>
-
-        <br><br>
-
         <label>
-            stock
-            <input type="number" name="stock" required value="{{old('stock')}}">
+            Stock
+            <input type="number" name="stock" required value="{{ old('stock') }}">
         </label>
-
-        <br><br>
-
         <label>
-            precio
-            <input type="number" step="any" name="price" required value="{{old('price')}}">
+            Precio
+            <input type="number" step="any" name="price" required value="{{ old('price') }}">
         </label>
-        
-        <br><br>
-
         <label>
-            categoria
+            Categoria
             <select name="idCategory">
                 <option value="">Seleccione categoria</option>
                 @foreach ($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
         </label>
-
-        <br><br>
-
         <label>
-            foto
+            Foto
             <input type="file" name="image[]" multiple>
         </label>
-
-        <br><br>
-
         <label>
-            video
+            Video
             <input type="file" name="video[]" multiple>
         </label>
-
-        <br><br>
-
         <button type="submit">Agregar</button>
     </form>
-
+    </div>
 @endsection

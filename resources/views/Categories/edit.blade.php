@@ -5,7 +5,7 @@
 @section('content')
     
     <h1>BIENVENIDO A EDITAR EL PRODUCTO</h1>
-
+    <div class="containerFormAdd">
     <form action="{{route('categories.update', $category)}}" method="post">
 
         @csrf
@@ -19,5 +19,6 @@
 
         <button type="submit">Editar</button>
     </form>
+    </div>
 
 @endsection
