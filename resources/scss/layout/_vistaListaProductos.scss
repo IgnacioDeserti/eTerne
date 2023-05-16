@@ -1,3 +1,7 @@
+// Estilos generales
+$input-border-radius: 0.25rem;
+$primary-color: #007bff;
+
 h1 {
     text-align: center;
     font-size: 2rem;
@@ -7,57 +11,226 @@ h1 {
 
 .containerListaProductos {
     position: relative;
-    margin: 10px auto;
-
-    // Centrar verticalmente el contenedor
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    width: 80%;
+    margin: 50px auto;
+    @include properties-flex(column, center, center);
+    width: 85%;
     background-color: #EBF8FF;
     height: 100vh; // Altura del viewport
-    color: #1E3A8A; // Color de texto
+    color: #4b64a8; // Color de texto
     border-radius: 5%;
 
-    a {
+    .addProduct {
         text-decoration: none;
+        text-align: center;
         font-weight: bold;
-        color: #1E3A8A;
-        display: block;
+        color: #FFFFFF;
+        background-color: #4CA0EA;
         padding: 10px;
         border-radius: 5%;
         transition: all ease 0.2s;
+        margin-bottom: 2rem;
 
         &:hover {
-            background-color: #60A5FA;
-            transform: translateY(-5px);
+            background-color: #54abf7;
+            transform: scale(1.1);
             color: #fff;
         }
     }
+}
 
-    ul {
-        list-style: none;
-        padding: 10px;
-        margin: 10px;
+// Contenedor principal
+.container-products {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
 
-        li {
-            font-size: 1.2rem;
+    // Contenedor de búsqueda
+    .search-container {
+        @include properties-flex(row, center, center);
+        margin-bottom: 1rem;
+
+        // Input de búsqueda
+        .search-input {
+            padding: 0.5rem;
+            border-radius: $input-border-radius;
+            border: 1px solid #ccc;
             width: 100%;
-            font-weight: bold;
-            transition: all ease 0.2s;
+            max-width: 400px;
+            transition: all 0.3s;
 
-            &:hover {
-                transform: scale(1.05);
+            &:focus {
+                outline: none;
+                border-color: $primary-color;
+                box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+            }
+        }
+    }
+
+    // Tabla de productos
+    .products-table {
+        width: 100%;
+        overflow-x: auto;
+        border-collapse: collapse;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        th,
+        td {
+            text-align: left;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+            background-color: #f8f9fa;
+        }
+
+        td {
+            &:first-child {
+                border-top-left-radius: $input-border-radius;
+                border-bottom-left-radius: $input-border-radius;
             }
 
-            a {
-                width: 100%;
+            &:last-child {
+                border-top-right-radius: $input-border-radius;
+                border-bottom-right-radius: $input-border-radius;
+            }
+        }
 
-                &:hover {
-                    background-color: #60A5FA;
-                    color: #fff;
+        // Filas de la tabla
+        tr {
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: #f5f5f5;
+            }
+
+            td {
+                .product-id {
+                    width: 10%;
                 }
+
+                .product-name {
+                    width: 20%;
+                    font-weight: bold;
+                }
+
+                .product-price {
+                    width: 15%;
+                }
+
+                .product-stock {
+                    width: 10%;
+                }
+
+                .product-category {
+                    width: 20%;
+                    text-transform: capitalize;
+                }
+
+                .product-actions {
+                    width: 25%;
+                    .espacioBtn{
+                        margin: 50px;
+                    }
+                }
+            }
+        }
+
+        // Estilos para las filas pares
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    }
+
+    // Contenedor de paginación
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    // Estilos para pantallas pequeñas
+    @media (max-width: 767.98px) {
+        .products-table {
+            font-size: 0.8rem;
+            th,
+            td{
+                padding: 0.5rem;
+            }
+        }
+    }
+
+    // Estilos para pantallas medianas
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        .products-table {
+            font-size: 0.9rem;
+            th,
+            td{
+                padding: 0.25rem 0.5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 550px) {
+    .containerListaProductos {
+        width: 95%;
+    }
+    .container-products {
+        padding: 0;
+
+        .products-table {
+            font-size: 0.75rem;
+
+            th,
+            td {
+                padding: 0.2rem;
+            }
+
+            th {
+                font-weight: bold;
+            }
+        }
+
+        .search-input {
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 0.75rem;
+
+            /* <- Reducir el tamaño de la fuente */
+            input {
+                height: 2rem;
+                border-radius: 0px;
+            }
+        }
+
+        .add-product-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            .add-product-btn {
+                font-size: 0.75rem;
+                /* <- Reducir el tamaño de la fuente */
+                padding: 0.75rem;
+                /* <- Cambiar el tamaño del padding */
+            }
+        }
+
+        .product-actions {
+            .btn-ver {
+                font-size: 0.85rem;
+                /* <- Reducir el tamaño de la fuente */
+                padding: 0.25rem;
+                /* <- Cambiar el tamaño del padding */
+            }
+            .espacioBtn{
+                margin: 5px;
             }
         }
     }

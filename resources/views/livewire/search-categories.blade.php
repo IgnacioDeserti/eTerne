@@ -1,53 +1,47 @@
-<div>
-    <div class="max-w-7x1 mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
-        <!-- component -->
-        <x-table>
-            <div class="px-6 py-4">
-                <input type="text" wire:model="search">
-            </div>
-
-            <table class="min-w-full">
-                <thead class="bg-white border-b">
+<div class="container-products">
+    <div class="search-container">
+        <input type="text" placeholder="Buscar Categoria" wire:model="search">
+    </div>
+    <table>
+        <table class="products-table">
+            <thead>
+                <tr>
+                    <th scope="col" class="product-id">
+                        ID
+                    </th>
+                    <th scope="col" class="product-name">
+                        Nombre
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($categories as $category)
                     <tr>
-                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                            ID
-                        </th>
-                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                            Nombre
-                        </th>
+                        <td>
+                            <div class="product-id">
+                                {{ $category->id }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="product-name">
+                                {{ $category->name }}
+                            </div>
+                        </td>
+                        <td class="product-actions">
+                            <a href="{{ route('categories.show', $category->id) }}"><button
+                                    class="btn-ver espacioBtn">Ver
+                                    categoria</button></a>
+                            <a href="{{ route('categories.filterProducts', $category->id) }}"><button
+                                    class="btn-ver espacioBtn">Ver productos
+                                    de esta categoria</button></a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($categories as $category)
-                        <tr class="bg-white border-b">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                <div class="text-sm text-gray-900">
-                                    {{ $category->id }}
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                <div class="text-sm text-gray-900">
-                                    {{ $category->name }}
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                <div>
-                                    <a href="{{ route('categories.show', $category->id) }}"><button>Ver categoria</button></a>
-                                </div>
-                                <div>
-                                    <a href="{{ route('categories.filterProducts', $category->id)}}"><button>Ver productos de esta categoria</button></a>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </x-table>
-    </div>
+                @endforeach
+            </tbody>
+        </table>
+    </table>
+</div>
 
-    <div class="card-footer">
-        {{ $categories->links() }}
-    </div>
-
+<div class="card-footer">
+    {{ $categories->links() }}
 </div>
