@@ -1,10 +1,7 @@
-<div id="menu-container">
     <header class="Cabecera">
         <nav class="Cabecera-nav">
             <ul class="Cabecera-ul">
-                @foreach ($categories as $category)
-                    <ul><a href="{{route('home.productsByCategory', $category->id)}}">{{$category->name}}</a></ul>
-                @endforeach
+                <div id="dropDown"></div>
                 @if (Route::has('login'))
                     @auth
                         @if (auth()->user()->hasRole('admin'))
@@ -34,4 +31,6 @@
             <i class="fa fa-bars"></i>
         </button>
     </header>
-</div>
+    <script>
+        window.categories = @json($categories);
+    </script>

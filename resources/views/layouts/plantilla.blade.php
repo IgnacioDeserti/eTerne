@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,14 +12,16 @@
     <!-- favicon  -->
     <!-- estilos -->
 </head>
+
 <body>
     <!-- header -->
 
     @include('layouts.partials.header')
-    
+
     @yield('content')
 
     @include('layouts.partials.footer')
     <!-- scripts -->
 </body>
+
 </html>
