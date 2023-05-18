@@ -43,7 +43,7 @@ Route::controller(GoogleController::class)->group(function () {
 
 Route::get('/connect-to-google-drive', [GoogleController::class, 'connectToGoogleDrive']);
 
-Route::get('/google-drive-callback', function () {
+/* Route::get('/google-drive-callback', function () {
     $googleClient = new GoogleClient();
     $googleClient->setClientId(env('GOOGLE_CLIENT_ID'));
     $googleClient->setClientSecret(env('GOOGLE_CLIENT_SECRET'));
@@ -51,7 +51,7 @@ Route::get('/google-drive-callback', function () {
     $googleClient->authenticate(request()->get('code'));
     session()->put('google_token', $googleClient->getAccessToken());
     return redirect('/connect-to-google-drive');
-});
+}); */
 
 
 Route::middleware([
