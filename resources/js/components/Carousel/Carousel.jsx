@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import Button from "../Button/Button";
 
 const Carousel = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -70,11 +69,6 @@ const Carousel = () => {
     ],
   };
 
-  const handleProductClick = (product) => {
-    setSelectedProduct(product);
-    console.log(product);
-  };
-
   return (
     <>
       <div className="carousel">
@@ -88,7 +82,7 @@ const Carousel = () => {
               <div
                 key={product.id}
                 className="carousel__slide"
-                onClick={() => handleProductClick(product)}
+                onClick={() => window.location.href = `http://localhost:8000/clientShowCarousel/${product.id}`}
               >
                 {products.images && products.images.map((image) => {
                   return image.product_id === product.id ? (
@@ -102,7 +96,6 @@ const Carousel = () => {
                 })}
                 <h3 className="carousel__subtitle">{product.name}</h3>
                 <p className="carousel__price">${product.price}</p>
-                <Button product={product} />
               </div>
             ))}
           </Slider>

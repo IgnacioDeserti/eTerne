@@ -7,14 +7,20 @@ $background-color_2: #3b3b3b;
 $background-color_3: #fff;
 
 .Cabecera {
-    position: relative;
-    z-index: 9999;
     width: 100%;
     background-color: $background-color_1;
     padding: 1em;
-    @include properties-flex(row, flex-end, center);
+    @include properties-flex(row, space-between, center);
     color: $color_1;
 
+    .containerBuscador {
+        @include properties-flex(row, center, center);
+        width: 100%;
+
+        #searchBar {
+            width: 30%;
+        }
+    }
 
     .Cabecera-ul {
         @include properties-flex(row, center, center);
@@ -58,10 +64,18 @@ $background-color_3: #fff;
 
 @media screen and (max-width:768px) {
     .Cabecera {
-        .Cabecera-button {
-            position: relative;
-            display: flex;
-            top: 0%;
+        @include properties-flex(column, space-between, center);
+
+        .containerBuscador {
+            #searchBar {
+                width: 90%;
+            }
+
+            .Cabecera-button {
+                position: relative;
+                display: flex;
+                top: 0%;
+            }
         }
 
         .Cabecera-nav {

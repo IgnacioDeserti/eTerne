@@ -15,6 +15,7 @@ import './components/GalleryProduct/GalleryProduct';
 import './components/Carousel/Carousel';
 import './components/Dropdown/Dropdown';
 import './components/Carousel3D/Carousel3D';
+import './components/SearchBar/SearchBar';
 import './components/Footer/Footer';
 import './components/Button/Button';
 import './components/Loader/Loader';

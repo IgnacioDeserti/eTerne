@@ -1,4 +1,11 @@
+<div id="menu-container">
     <header class="Cabecera">
+        <div class="containerBuscador">
+            <div id="searchBar"></div>
+            <button class="Cabecera-button">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
         <nav class="Cabecera-nav">
             <ul class="Cabecera-ul">
                 <div id="dropDown"></div>
@@ -27,10 +34,9 @@
                 <a href="{{ route('cart.index') }}" class="Cabecera-li">Carrito</a>
             </ul>
         </nav>
-        <button class="Cabecera-button">
-            <i class="fa fa-bars"></i>
-        </button>
+
     </header>
     <script>
         window.categories = @json($categories);
     </script>
+</div>

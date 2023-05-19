@@ -23,7 +23,10 @@ const Dropdown = () => {
 
     return (
         <div className="dropdown" ref={ref}>
-            <button className="dropdown__toggle Cabecera-li" onClick={handleToggle}>
+            <button
+                className={`dropdown__toggle Cabecera-li ${isOpen ? 'open' : ''}`}
+                onClick={handleToggle}
+            >
                 Categories
             </button>
             {isOpen && (

@@ -18,17 +18,18 @@
     &__menu {
         position: absolute;
         top: 103%;
-        left: 0;
+        left: 10px;
         z-index: 1;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 1s ease-in-out; /* aumentar la duración de la transición */
+        transition: max-height 0.5s ease-in-out; /* aumentar la duración de la transición */
         background-color: white;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         border-radius: 4px;
 
         &.open {
             max-height: 500px;
+            transition-duration: 1s; /* aumentar la duración de la transición */
         }
     }
 
@@ -40,6 +41,7 @@
         &.visible {
             opacity: 1;
             transform: translateY(0);
+            transition-duration: 1s; /* aumentar la duración de la transición */
         }
     }
 
