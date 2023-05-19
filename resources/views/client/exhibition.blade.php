@@ -1,3 +1,4 @@
+@props(['categories'])
 @extends('layouts.muestraProductos')
 
 @section('title', $producto->name)

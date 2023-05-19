@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoryController;
 use App\Mail\ContactanosMailable;
+use App\Models\Category;
 use App\Models\ImageProducts;
 use App\Models\Product;
 use App\Models\User;
@@ -148,8 +149,9 @@ Route::get('/clientShow/{id}', function ($id) {
 
         array_push($videos, $video->getAttributes());
     }
+    $categories = Category::all();
 
-    return compact('producto', 'photos', 'videos');
+    return compact('producto', 'photos', 'videos', 'categories');
 });
 
 Route::get('/clientShowCarousel/{id}', function ($id) {
@@ -187,7 +189,9 @@ Route::get('/clientShowCarousel/{id}', function ($id) {
         array_push($videos, $video->getAttributes());
     }
 
-    return view('client.exhibition', compact('producto', 'photos', 'videos'));
+    $categories = Category::all();
+
+    return view('client.exhibition', compact('producto', 'photos', 'videos', 'categories'));
 });
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
