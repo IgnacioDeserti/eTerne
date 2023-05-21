@@ -19,11 +19,6 @@ window.onload = function () {
         menuContainer.classList.toggle('Active', menuOpen);
         button.classList.toggle('menuAbierto', buttonOpen);
         nav.classList.toggle('isActive', menuOpen);
-
-        // Iterar a través de los enlaces y establecer la clase deseada
-        links.forEach((link) => {
-            link.firstChild.className = menuOpen ? 'fa fa-times' : 'fa fa-bars';
-        });
     }
 
     // Agregar event listener al botón

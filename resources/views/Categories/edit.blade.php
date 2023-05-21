@@ -3,22 +3,16 @@
 @section('title', 'Edit')
 
 @section('content')
-    
     <h1>BIENVENIDO A EDITAR EL PRODUCTO</h1>
     <div class="containerFormAdd">
-    <form action="{{route('categories.update', $category)}}" method="post">
-
-        @csrf
-
-        @method('put')
-
-        <label>
-            nombre
-            <input type="text" name="name" value="{{$category->name}}" required>
-        </label>
-
-        <button type="submit">Editar</button>
-    </form>
+        <form action="{{ route('categories.update', $category) }}" method="post">
+            @csrf
+            @method('put')
+            <label>
+                nombre
+                <input type="text" name="name" value="{{ $category->name }}" required>
+            </label>
+            <button type="submit">Editar</button>
+        </form>
     </div>
-
 @endsection

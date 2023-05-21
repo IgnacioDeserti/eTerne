@@ -1,5 +1,4 @@
 $white: #fff;
-$blue: #004e92;
 $black: #000428;
 
 .containerFormAdd {
@@ -8,7 +7,7 @@ $black: #000428;
     min-height: 100vh;
     margin: 20px auto;
     border-radius: 5%;
-    background-color: $blue; // Color principal de fondo
+    background-color: #EBF8FF; // Color principal de fondo
     color: $white;
 
     form {
@@ -20,7 +19,7 @@ $black: #000428;
             margin-bottom: 20px;
             font-size: 1.2rem;
             font-weight: bold;
-            color: $white;
+            color: $black;
             select{
                 color: $black;
             }

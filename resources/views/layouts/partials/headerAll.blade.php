@@ -8,33 +8,32 @@
         </div>
         <nav class="Cabecera-nav">
             <ul class="Cabecera-ul">
-                <div id="dropDown"></div>
+                <div id="dropDown" class="Cabecera-li"></div>
                 @if (Route::has('login'))
                     @auth
                         @if (auth()->user()->hasRole('admin'))
-                            <a href="{{ url('/dashboard') }}" class="Cabecera-li">Dashboard</a>
+                            <li class="Cabecera-li"><a href="{{ url('/dashboard') }}" class="Cabecera-a">Dashboard</a></li>
                         @endif
-                        <a href="{{ route('profile.show') }}" :active="request() - > routeIs('profile.show')"
-                            class="Cabecera-li">
-                            {{ __('Profile') }}
-                        </a>
-                        <form method="POST" action="{{ route('logout') }}" x-data>
+                        <li class="Cabecera-li"><a href="{{ route('profile.show') }}"
+                                :active="request() - > routeIs('profile.show')" class="Cabecera-a">
+                                {{ __('Profile') }}
+                            </a></li>
+                        <form class="Cabecera-li" method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
-                            <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="Cabecera-li">
-                                {{ __('Log Out') }}
-                            </a>
+                            <li><a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="Cabecera-a">
+                                    {{ __('Log Out') }}
+                                </a></li>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="Cabecera-li">Log in</a>
+                        <li class="Cabecera-li"><a href="{{ route('login') }}" class="Cabecera-a">Log in</a></li>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="Cabecera-li">Register</a>
+                            <li class="Cabecera-li"><a href="{{ route('register') }}" class="Cabecera-a">Register</a></li>
                         @endif
                     @endauth
                 @endif
-                <a href="{{ route('cart.index') }}" class="Cabecera-li">Carrito</a>
+                <li class="Cabecera-li"><a href="{{ route('cart.index') }}" class="Cabecera-a">Carrito</a></li>
             </ul>
         </nav>
-
     </header>
     <script>
         window.categories = @json($categories);

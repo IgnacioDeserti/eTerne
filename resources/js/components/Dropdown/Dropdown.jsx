@@ -23,12 +23,12 @@ const Dropdown = () => {
 
     return (
         <div className="dropdown" ref={ref}>
-            <button
-                className={`dropdown__toggle Cabecera-li ${isOpen ? 'open' : ''}`}
+            <li
+                className={`${isOpen ? 'open' : ''}`}
                 onClick={handleToggle}
             >
                 Categories
-            </button>
+            </li>
             {isOpen && (
                 <ul className={`dropdown__menu ${isOpen ? 'open' : ''}`}>
                     {categories.map((category, index) => (

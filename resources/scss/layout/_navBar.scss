@@ -18,7 +18,7 @@ $background-color_3: #fff;
         width: 100%;
 
         #searchBar {
-            width: 30%;
+            width: 100%;
         }
     }
 
@@ -32,12 +32,20 @@ $background-color_3: #fff;
             display: block;
             color: $color_1;
             padding: 0.5rem 1rem;
+            text-align: center;
             transition: background-color 0.8s;
             text-decoration: none;
             border-radius: 10%;
+            width: 100%;
 
             &:hover {
                 background-color: #2e88ee;
+            }
+
+            .Cabecera-a {
+                width: 100%;
+                display: block;
+                white-space: nowrap;
             }
         }
     }
@@ -51,10 +59,6 @@ $background-color_3: #fff;
         margin-right: 10px;
         cursor: pointer;
         transition: all 0.2s ease-in-out;
-
-        &:hover {
-            transform: scale(1.1);
-        }
 
         &:focus {
             outline: none;
@@ -75,6 +79,7 @@ $background-color_3: #fff;
                 position: relative;
                 display: flex;
                 top: 0%;
+                left: 2%;
             }
         }
 
@@ -97,7 +102,6 @@ $background-color_3: #fff;
             position: relative;
             top: -3rem;
             z-index: 99;
-            left: 2%;
         }
 
         .Cabecera-ul {
@@ -107,7 +111,6 @@ $background-color_3: #fff;
 
             .Cabecera-li {
                 width: 100%;
-                margin: .5em 0;
             }
         }
     }
