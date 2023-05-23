@@ -21,6 +21,7 @@
     @endforeach
     <div id="loader-wrapper"></div>
     <div id="content-wrapper" class="hidden">
+        <div id="products-section"></div>
         <div id="carousel"></div>
         <div id="carousel3D"></div>
         <div id="footer"></div>
