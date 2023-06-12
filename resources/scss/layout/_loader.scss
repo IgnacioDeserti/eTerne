@@ -13,6 +13,16 @@
 		border-radius: 50%;
         animation: parpadeo 1s ease-out infinite;
     }
+
+	video {
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		width: fit-content;
+		height: fit-content;
+	}
 }
 
 .hidden{

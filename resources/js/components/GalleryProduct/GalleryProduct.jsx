@@ -41,13 +41,67 @@ const ImageGallery = () => {
     }
     setMainImg(mainSrc); // Update the state to set the new main image or video
   };
+
+  const handleMouseOver = (event) => {
+    // Obtener las coordenadas del mouse en relación con la imagen
+    let rect = event.target.getBoundingClientRect();
+    let x = event.clientX - rect.left;
+    let y = event.clientY - rect.top;
+
+    // Calcular el factor de zoom
+    const zoomFactor = 3;
+
+    // Crear un elemento para mostrar la imagen ampliada
+    const zoomedImage = document.createElement("div");
+    zoomedImage.style.position = "absolute";
+    zoomedImage.style.left = `${event.pageX + 10}px`;
+    zoomedImage.style.top = `${event.pageY + 10}px`;
+    zoomedImage.style.width = `${rect.width / (zoomFactor * 2)}px`;
+    zoomedImage.style.height = `${rect.height / (zoomFactor * 2)}px`;
+    zoomedImage.style.backgroundImage = `url(${event.target.src})`;
+    zoomedImage.style.backgroundSize = `${rect.width * zoomFactor}px ${rect.height * zoomFactor}px`;
+    zoomedImage.style.backgroundPositionX = `${-x * zoomFactor + (zoomedImage.offsetWidth / 2)}px`;
+    zoomedImage.style.backgroundPositionY = `${-y * zoomFactor + (zoomedImage.offsetHeight / 2)}px`;
+    zoomedImage.style.border = "1px solid black";
+    document.body.appendChild(zoomedImage);
+
+    // Actualizar la posición del fondo de la imagen ampliada cuando el mouse se mueve
+    event.target.addEventListener("mousemove", (event) => {
+      rect = event.target.getBoundingClientRect();
+      x = event.clientX - rect.left;
+      y = event.clientY - rect.top;
+      zoomedImage.style.backgroundPositionX = `${-x * zoomFactor + (zoomedImage.offsetWidth / 2)}px`;
+      zoomedImage.style.backgroundPositionY = `${-y * zoomFactor + (zoomedImage.offsetHeight / 2)}px`;
+      zoomedImage.style.left = `${event.pageX + 10}px`;
+      zoomedImage.style.top = `${event.pageY + 15}px`;
+      zoomedImage.style.borderRadius = '30%'
+    });
+
+    // Recalcular la posición del elemento cuando se hace scroll en la página
+    const handleScroll = () => {
+      rect = event.target.getBoundingClientRect();
+      x = event.clientX - rect.left;
+      y = event.clientY - rect.top;
+      zoomedImage.style.left = `${event.pageX + 10}px`;
+      zoomedImage.style.top = `${event.pageY + window.scrollY + 10}px`;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Eliminar el elemento cuando el mouse sale de la imagen
+    event.target.addEventListener("mouseout", () => {
+      document.body.removeChild(zoomedImage);
+      window.removeEventListener("scroll", handleScroll);
+    });
+  };
+
   return (
     <div className="containerImageGallery">
       <div className="img_container">
         {isVideo ? (
           <video src={mainImg} className="main_img mainvideo" controls></video>
         ) : (
-          <img src={mainImg} alt="" className="main_img" />
+          <img src={mainImg} alt="" className="main_img" onMouseOver={handleMouseOver} />
         )}
       </div>
       <div className="thumbnail_container">
