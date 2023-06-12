@@ -17,7 +17,7 @@
                 <input type="hidden" name="price" value="{{ $producto->price }}">
 
                 <label for="" class="etiqueta-cantidad">Ingrese cantidad</label>
-                <input type="number" min="1" max="{{ $producto->stock }}" name="quantity" class="cantidad" required>
+                <input type="number" min="1" name="quantity" class="cantidad" required>
                 <button class="product-details__buy-button" type="submit">Agregar al carrito</button>
             </form>
         </div>

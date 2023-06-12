@@ -24,4 +24,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     Route::get('admin/userDeallocate/{user}', [AdminController::class, 'deallocateRoleUser'])->middleware('role:admin')->name('admin.deallocateRoleUser');
 });
 
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::get('admin/spreadsheet', [AdminController::class, 'spreadsheet'])->middleware('role:admin')->name('admin.spreadsheet');
+});
+
 ?>

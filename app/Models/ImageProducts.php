@@ -11,6 +11,7 @@ class ImageProducts extends Model
 {
     use HasFactory;
     use HasAttributes;
+    protected $fillable = ['url', 'product_id'];
 
     public function product(){
         return $this->belongsTo('App\Models\Product');

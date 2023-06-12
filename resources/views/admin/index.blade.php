@@ -12,6 +12,7 @@
         <button type="submit" name="action" value="products">Agregar productos</button>
         <button type="submit" name="action" value="categories">Agregar categorias</button>
         <button type="submit" name="action" value="users">Ver usuarios</button>
+        <button type="submit" name="action" value="spreadsheet">Hoja de Calculo</button>
     </form>
 
 @endsection

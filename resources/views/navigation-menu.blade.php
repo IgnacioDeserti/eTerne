@@ -37,14 +37,10 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @foreach ($navLinks as $link)
                         <x-nav-link href="{{ $link['route'] }}" :active="$link['active']">
-                            @if (strcmp($link['route'], 'dashboard') == 0)
-                                @can('admin')
-                                    {{ __($link['name']) }} 
-                                @endcan
-                            @endif
+                            {{ $link['name'] }}
                         </x-nav-link>
                     @endforeach
 

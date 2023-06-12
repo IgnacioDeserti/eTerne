@@ -59,20 +59,4 @@ class GoogleController extends Controller
             dd($e->getMessage());
         }
     }
-
-    public function connectToGoogleDrive()
-    {
-        $client = new Google_Client();
-        $client->setClientId(env("GOOGLE_DRIVE_CLIENT_ID"));
-        $client->setClientSecret(env("GOOGLE_DRIVE_CLIENT_SECRET"));
-        $client->refreshToken(env("GOOGLE_DRIVE_REFRESH_TOKEN"));
-        $client->setApplicationName('eTerne');
-
-        $service = new Google_Service_Drive($client);
-
-        // variant 1
-        $adapter = new GoogleDriveAdapter($service, 'My_App_Root');
-
-        
-    }
 }

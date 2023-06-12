@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function(Blueprint $table){
-            $table->id();
-            $table->string('name');
-            $table->string('brand');
-            $table->integer('idCategory');
-            $table->string('slug');
-            $table->text('description');
-            $table->float('price');
-            $table->boolean('hidden');
+        Schema::create('DB_PREFIX_mobbex_custom_fields', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('row_id')->index();
+            $table->text('object');
+            $table->text('field_name');
+            $table->text('data');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('DB_PREFIX_mobbex_custom_fields');
     }
 };
