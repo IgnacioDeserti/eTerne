@@ -49,7 +49,7 @@
                 @if (\Cart::getTotalQuantity() > 0)
                     <h4>{{ \Cart::getTotalQuantity() }} Producto(s) en el carrito</h4>
                 @else
-                    <h4>No Product(s) In Your Cart</h4>
+                    <h4>Carrito sin productos</h4>
                     <a href="/" class="">Continue en la tienda</a>
                 @endif
 
@@ -107,7 +107,7 @@
                         <li><b>Total: </b>${{ \Cart::getTotal() }}</li>
                         <li>
                             <a href="/" class="">Continue en la tienda</a>
-                            <a href="/checkout" class="">Proceder al Checkout</a>
+                            <a href="{{route('cart.checkout')}}" class="">Proceder al Checkout</a>
                         </li>
                     </ul>
                 </div>

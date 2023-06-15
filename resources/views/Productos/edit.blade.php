@@ -35,8 +35,8 @@
                 <small>{{ $message }}</small>
             @enderror
             <label>
-                Stock
-                <input type="number" name="stock" value="{{ $producto->stock }}" required>
+                Marca
+                <input type="text" name="brand" value="{{ $producto->brand }}" required>
             </label>
             @error('stock')
                 <small>{{ $message }}</small>

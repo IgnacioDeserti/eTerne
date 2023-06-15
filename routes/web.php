@@ -30,10 +30,6 @@ use App\Http\Controllers\GoogleController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/google-auth/redirect', function () {
-    return Socialite::driver('google')->redirect();
-});
-
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
@@ -64,6 +60,31 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::resource('user', ClientController::class);
 });
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::post('/add', [CartController::class, 'add'])->name('cart.store');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::post('/update', [CartController::class, 'update'])->name('cart.update');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
+});
+
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+});
+
 
 Route::get('contactanos', [ContactanosController::class, 'index'])->name('contactanos.index');
 
@@ -176,22 +197,4 @@ Route::get('/clientShowCarousel/{id}', function ($id) {
     return view('client.exhibition', compact('producto', 'photos', 'videos', 'categories'));
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
-});
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::post('/add', [CartController::class, 'add'])->name('cart.store');
-});
-
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::post('/update', [CartController::class, 'update'])->name('cart.update');
-});
-
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
-});
-
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::post('/clear', [CartController::class, 'clear'])->name('cart.clear');
-});

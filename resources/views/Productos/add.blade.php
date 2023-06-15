@@ -16,8 +16,8 @@
             <input type="textarea" name="description" required value="{{ old('desctription') }}">
         </label>
         <label>
-            Stock
-            <input type="number" name="stock" required value="{{ old('stock') }}">
+            Marca
+            <input type="text" name="brand" required value="{{ old('brand') }}">
         </label>
         <label>
             Precio
@@ -40,6 +40,7 @@
             Video
             <input type="file" name="video[]" multiple>
         </label>
+        <input type="hidden" name="hidden" value="1">
         <button type="submit">Agregar</button>
     </form>
     </div>

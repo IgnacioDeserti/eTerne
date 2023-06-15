@@ -37,7 +37,7 @@ class HomeController extends Controller
     }
 
     public function productsByCategory($id){
-        $productos = Product::where('category_id', $id)->get();
+        $productos = Product::where('idCategory', '=', $id)->get();
         return response()->json($productos);
     }
 

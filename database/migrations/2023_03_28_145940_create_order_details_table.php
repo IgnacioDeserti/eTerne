@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->float('price_per_product');
             $table->integer('quantity');
+            $table->float("subtotal_per_product");
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
 

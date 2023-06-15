@@ -66,21 +66,17 @@ class AdminController extends controller
     public function spreadsheet()
     {
         echo "<pre>";
-        $dataProducts = Sheets::spreadsheet("12MlT5hdzOzFhphJvUW3oumPrW4JNE_JFaGm1qP17vMQ")
+
+        $dataProducts = Sheets::spreadsheet("1ICXT_o-nRVa4bqgGCmvyPJXdQ_eYxpkYWcQwqevZ5fE")
             ->sheet('Productos')
             ->get();
 
         $header = $dataProducts->pull(0);
-
-        for($i=1; $i <= count($dataProducts); $i++){
-            $data = Sheets::collection($header, $dataProducts[$i]);
-            print_r($data);
-            $valuesProducts = $data;
-        }
+        $valuesProducts = Sheets::collection($header, $dataProducts);
         $valuesProducts->toArray();
 
-        
-        //print_r($valuesProducts);
+        print_r($valuesProducts);
+
         //print_r($aux);
         //print_r($header);
 

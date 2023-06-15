@@ -15,7 +15,7 @@
                     Precio
                 </th>
                 <th scope="col" class="product-stock">
-                    Stock
+                    Marca
                 </th>
                 <th scope="col" class="product-category">
                     Categoria
@@ -45,7 +45,7 @@
                     </td>
                     <td>
                         <div class="product-stock">
-                            {{ $product->stock }}
+                            {{ $product->brand }}
                         </div>
                     </td>
                     <td>

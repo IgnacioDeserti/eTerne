@@ -18,7 +18,7 @@ const ImageGallery = () => {
       const data = await response.json();
       setProductData(data);
       console.log(data)
-      setMainImg(`/${data.photos[0].url}`);
+      setMainImg(`${data.photos[0].url}`);
     } catch (error) {
       console.error(error);
     }
@@ -108,7 +108,7 @@ const ImageGallery = () => {
         {productData.photos && productData.photos.map((image) => (
           <img
             key={image.product_id}
-            src={`/${image.url}`}
+            src={`${image.url}`}
             className={`thumbnail ${image.url === mainImg && "active"}`}
             onClick={handleClick}
           />
@@ -116,8 +116,8 @@ const ImageGallery = () => {
         {productData.videos && productData.videos.map((video) => (
           <ReactPlayer
             key={video.product_id} // Agregamos una clave única para cada video
-            url={`/${video.url}`}
-            playing={mainImg === `/${video.url}`} // Reproducir solo si es el video principal
+            url={`${video.url}`}
+            playing={mainImg === `${video.url}`} // Reproducir solo si es el video principal
             className={`thumbnail ${mainImg === video.url && "active"}`}
             onClick={handleClick}
           />
