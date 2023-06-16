@@ -10,8 +10,8 @@
     <div class="container">
         <nav aria-label="">
             <ul class="nav-menu">
-                <li><a href="/" class="nav-link">Tienda</a></li>
-                <li class="nav-item" aria-current="page">Cart</li>
+                <li><a href="{{route('home')}}" class="nav-link">Tienda</a></li>
+                <li class="nav-item" aria-current="page">Carrito</li>
             </ul>
         </nav>
 
@@ -61,12 +61,12 @@
 
                         <div class="cart-item-info">
                             <p>
-                                <b><a href="/shop/{{ $item->attributes->slug }}">{{ $item->name }}</a></b>
+                                <b><a href="http://eTerne.com:8000/clientShowCarousel/{{$item->id}}">{{ $item->name }}</a></b>
                                 <br>
-                                <b>Price: </b>${{ $item->price }}
+                                <b>Precio: </b>${{ $item->price }}
                             </p>
                             <p>
-                                <b>Sub Total: </b>${{ \Cart::get($item->id)->getPriceSum() }}
+                                <b>SubTotal: </b>${{ \Cart::get($item->id)->getPriceSum() }}
                                 {{--                                <b>With Discount: </b>${{ \Cart::get($item->id)->getPriceSumWithConditions() }} --}}
                             </p>
                         </div>
@@ -106,7 +106,7 @@
                     <ul>
                         <li><b>Total: </b>${{ \Cart::getTotal() }}</li>
                         <li>
-                            <a href="/" class="">Continue en la tienda</a>
+                            <a href="/" class="">Continuar en la tienda</a>
                             <a href="{{route('cart.checkout')}}" class="">Proceder al Checkout</a>
                         </li>
                     </ul>

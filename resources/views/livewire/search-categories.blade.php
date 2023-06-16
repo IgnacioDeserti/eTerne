@@ -41,7 +41,3 @@
         </table>
     </table>
 </div>
-
-<div class="card-footer">
-    {{ $categories->links() }}
-</div>

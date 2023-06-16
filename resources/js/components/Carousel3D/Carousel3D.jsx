@@ -7,7 +7,7 @@ const Carousel3D = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:8000/productosReact');
+                const response = await fetch('http://eTerne.com:8000/productosReact');
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {

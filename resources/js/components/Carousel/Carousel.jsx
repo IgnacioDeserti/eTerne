@@ -10,7 +10,7 @@ const Carousel = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:8000/productosReact');
+        const response = await fetch('http://eTerne.com:8000/productosReact');
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -82,7 +82,7 @@ const Carousel = () => {
               <div
                 key={product.id}
                 className="carousel__slide"
-                onClick={() => window.location.href = `http://localhost:8000/clientShowCarousel/${product.id}`}
+                onClick={() => window.location.href = `http://eTerne.com:8000/clientShowCarousel/${product.id}`}
               >
                 {products.images && products.images.map((image) => {
                   return image.product_id === product.id ? (

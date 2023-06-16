@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 class Product extends Model
 {
     use HasAttributes;
@@ -13,7 +14,16 @@ class Product extends Model
      * Summary of guarded
      * @var array
      */
-    protected $guarded = [];
+    protected $fillable = ['id',
+    'name',
+    'brand',
+    'description',
+    'idCategory',
+    'slug',
+    'price',
+    'hidden',
+    'updated_at',
+    'created_at'];
 
 
     /**
@@ -29,7 +39,8 @@ class Product extends Model
      * Summary of category
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function category(){
+    public function category()
+    {
         return $this->hasOne('App\Models\ProductXCategory');
     }
 
@@ -37,16 +48,17 @@ class Product extends Model
      * Summary of images
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function images(){
+    public function images()
+    {
         return $this->hasMany('App\Models\ImageProducts');
     }
-    
+
     /**
      * Summary of videos
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function videos(){
+    public function videos()
+    {
         return $this->hasMany('App\Models\VideoProducts');
     }
-
 }

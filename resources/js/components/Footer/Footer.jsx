@@ -10,7 +10,6 @@ const Footer = () => {
         <li><i className="fas fa-envelope"></i> info@tusitio.com</li>
       </ul>
       <div className="social-icons">
-        <a target="_blank" href="https://web.whatsapp.com/send?phone=542234268951"><i className="fab fa-whatsapp"></i></a>
         <a target="_blank" href="https://www.instagram.com/"><i className="fab fa-instagram"></i></a>
       </div>
     </div>

@@ -13,7 +13,7 @@ const ProductSection = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:8000/productosReact');
+        const response = await fetch('http://eTerne.com:8000/productosReact');
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -53,7 +53,7 @@ const ProductSection = () => {
                 })}
                 <h2>{product.name}</h2>
                 <p className="price">${product.price}</p>
-                <button onClick={() => window.location.href = `http://localhost:8000/clientShowCarousel/${product.id}`}>Mostrar descripción</button>
+                <button onClick={() => window.location.href = `http://eTerne.com:8000/clientShowCarousel/${product.id}`}>Mostrar descripción</button>
               </div>
             ))
           ) : (

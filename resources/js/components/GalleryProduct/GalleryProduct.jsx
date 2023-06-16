@@ -14,7 +14,7 @@ const ImageGallery = () => {
 
   const fetchProduct = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:8000/clientShow/${productId}`);
+      const response = await fetch(`http://eTerne.com:8000/clientShow/${productId}`);
       const data = await response.json();
       setProductData(data);
       console.log(data)

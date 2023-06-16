@@ -75,7 +75,7 @@ class AdminController extends controller
         $valuesProducts = Sheets::collection($header, $dataProducts);
         $valuesProducts->toArray();
 
-        print_r($valuesProducts);
+        //print_r($valuesProducts);
 
         //print_r($aux);
         //print_r($header);
@@ -98,16 +98,16 @@ class AdminController extends controller
         
         //print_r($valuesProducts[208]['Pausar Publicacion']);
 
-        /* $product = new Product;
+        $product = new Product;
 
-        $product->setAttribute('id', $valuesProducts[208]['Cod. P']);
-        $product->setAttribute('name', $valuesProducts[208]['Producto']);
-        $product->setAttribute('brand', $valuesProducts[208]['Marca']);
+        $product->setAttribute('id', $valuesProducts[12]['Cod. P']);
+        $product->setAttribute('name', $valuesProducts[12]['Producto']);
+        $product->setAttribute('brand', $valuesProducts[12]['Pag Ref']);
         $product->setAttribute('description', "Muy bueno");
-        $product->setAttribute('idCategory', $this->idCategory($valuesProducts[208]['Tipo de Producto'])[0]->id);
+        $product->setAttribute('idCategory', $this->idCategory($valuesProducts[12]['Tipo de Producto'])[0]->id);
         $product->setAttribute('slug', Str::slug($product->getAttribute('name'), '-'));
-        $product->setAttribute('price', 18000);
-        if(strcmp("TRUE", $valuesProducts[208]['Pausar Publicacion']) == 0){
+        $product->setAttribute('price', $valuesProducts[12]['Precio de Venta']);
+        if(strcmp("TRUE", $valuesProducts[12]['Pausar Publicacion']) == 0){
             $product->setAttribute('hidden', 0);
         }else{
             $product->setAttribute('hidden', 1);
@@ -115,40 +115,40 @@ class AdminController extends controller
 
         Product::create($product->getAttributes());
 
-        if($valuesProducts[208]['Link Imagen 1']){
+        if($valuesProducts[12]['Link Imagen 1']){
             $imageProduct = new ImageProducts;
-            $imageProduct->setAttribute('url', $valuesProducts[208]['Link Imagen 1']);
-            $imageProduct->setAttribute('product_id', $valuesProducts[208]['Cod. P']);
+            $imageProduct->setAttribute('url', $valuesProducts[12]['Link Imagen 1']);
+            $imageProduct->setAttribute('product_id', $valuesProducts[12]['Cod. P']);
             ImageProducts::create($imageProduct->getAttributes());
         }
 
-        if($valuesProducts[208]['Link Imagen 2']){
+        if($valuesProducts[12]['Link Imagen 2']){
             $imageProduct2 = new ImageProducts;
-            $imageProduct2->setAttribute('url', $valuesProducts[208]['Link Imagen 2']);
-            $imageProduct2->setAttribute('product_id', $valuesProducts[208]['Cod. P']);
+            $imageProduct2->setAttribute('url', $valuesProducts[12]['Link Imagen 2']);
+            $imageProduct2->setAttribute('product_id', $valuesProducts[12]['Cod. P']);
             ImageProducts::create($imageProduct2->getAttributes());
         }
 
-        if($valuesProducts[208]['Link Imagen 3']){
+        if($valuesProducts[12]['Link Imagen 3']){
             $imageProduct3 = new ImageProducts;
-            $imageProduct3->setAttribute('url', $valuesProducts[208]['Link Imagen 3']);
-            $imageProduct3->setAttribute('product_id', $valuesProducts[208]['Cod. P']);
-            ImageProducts::create($imageProduct->getAttributes());
+            $imageProduct3->setAttribute('url', $valuesProducts[12]['Link Imagen 3']);
+            $imageProduct3->setAttribute('product_id', $valuesProducts[12]['Cod. P']);
+            ImageProducts::create($imageProduct3->getAttributes());
         }
 
-        if($valuesProducts[208]['Link Imagen 4']){
+        if($valuesProducts[12]['Link Imagen 4']){
             $imageProduct4 = new ImageProducts;
-            $imageProduct4->setAttribute('url', $valuesProducts[208]['Link Imagen 4']);
-            $imageProduct4->setAttribute('product_id', $valuesProducts[208]['Cod. P']);
-            ImageProducts::create($imageProduct->getAttributes());
+            $imageProduct4->setAttribute('url', $valuesProducts[12]['Link Imagen 4']);
+            $imageProduct4->setAttribute('product_id', $valuesProducts[12]['Cod. P']);
+            ImageProducts::create($imageProduct4->getAttributes());
         }
 
-        if($valuesProducts[208]['Link Video']){
+        if($valuesProducts[12]['Link Video']){
             $videoProduct = new VideoProducts;
-            $videoProduct->setAttribute('url', $valuesProducts[208]['Link Video']);
-            $videoProduct->setAttribute('product_id', $valuesProducts[208]['Cod. P']);
+            $videoProduct->setAttribute('url', $valuesProducts[12]['Link Video']);
+            $videoProduct->setAttribute('product_id', $valuesProducts[12]['Cod. P']);
             VideoProducts::create($videoProduct->getAttributes());
-        } */
+        }
     }
 
     public function idCategory($name){

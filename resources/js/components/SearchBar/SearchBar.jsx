@@ -10,7 +10,7 @@ function SearchBar() {
         const { value } = event.target;
         setSearchInput(value);
         // Consulta productos que coincidan con la cadena de búsqueda
-        fetch(`http://localhost:8000/productosReact?name_like=${value}`)
+        fetch(`http://eTerne.com:8000/productosReact?name_like=${value}`)
             .then(response => response.json())
             .then(data => {
                 // Filtra los productos según la entrada actual del usuario:
@@ -62,7 +62,7 @@ function SearchBar() {
                 <ul>
                     {searchResults.map(product => (
                         // Muestra el enlace a la página de detalles del producto:
-                        <li key={product.id} className='product-item' onClick={() => window.location.href = `http://localhost:8000/clientShowCarousel/${product.id}`}>
+                        <li key={product.id} className='product-item' onClick={() => window.location.href = `http://eTerne.com:8000/clientShowCarousel/${product.id}`}>
                             {/* Muestra una imagen y el título del producto: */}
                             <img src={product.image} alt={`${product.name}`} className='product-image' />
                             <div className='product-info'>
