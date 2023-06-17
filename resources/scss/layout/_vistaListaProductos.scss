@@ -16,8 +16,9 @@ h1 {
     width: 85%;
     background-color: #EBF8FF;
     height: 100vh; // Altura del viewport
-    color: #4b64a8; // Color de texto
+    background-image: linear-gradient(to bottom right, #EBF8FF, #A0D8FF);
     border-radius: 5%;
+    box-shadow: 0px 10px 20px rgb(0, 0, 0);
 
     .addProduct {
         text-decoration: none;

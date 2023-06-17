@@ -1,4 +1,4 @@
-<div>
+<div class="containerVistaUnUsuario">
     <x-slot name="header">
         <h2 class="font-semibold text-x1 text-gray-800 leading-tight">
             {{ _('Dashboard') }}
@@ -11,7 +11,7 @@
         <x-table>
 
             <div class="px-6 py-4">
-                <input type="text" wire:model="search">
+                <input class="search-input" type="text" wire:model="search" placeholder="Buscar Usuario...">
             </div>
 
             <table class="min-w-full">

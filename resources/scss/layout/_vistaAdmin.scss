@@ -1,0 +1,52 @@
+.containerGeneral {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+    @include properties-flex(column, center, center);
+    min-height: 100vh;
+
+    .containerAdmin{
+        position: relative;
+        max-height: 90%;
+        background-image: linear-gradient(to bottom right, #EBF8FF, #A0D8FF);
+        border: 2px solid black;
+        border-radius: 5%;
+        box-shadow: 0px 10px 20px rgb(0, 0, 0);
+        @include properties-flex(column, center, center);
+        form {
+            @include properties-flex(row, center, center);
+            flex-wrap: wrap;
+
+            button {
+                background-color: #0089BA;
+                margin: 5%;
+            }
+        }
+    }
+}
+
+.containerVistaUnUsuario{
+    min-height: 100vh;
+    @include properties-flex(column, center, center);
+    h1{
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 2rem 0;
+    }
+
+    .search-input {
+        padding: 0.5rem;
+        border-radius: $input-border-radius;
+        border: 1px solid #ccc;
+        width: 100%;
+        max-width: 400px;
+        transition: all 0.3s;
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+        }
+    }
+}
