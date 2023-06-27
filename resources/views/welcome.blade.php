@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/scss/main.scss', 'resources/js/app.js'])
+    <script src="https://live.decidir.com/static/v1/decidir.js"></script>
 </head>
 
 <body onload="showContent()">
@@ -22,6 +23,7 @@
     @endforeach
     <div id="loader-wrapper"></div>
     <div id="content-wrapper" class="hidden">
+        <div id="paymentForm"></div>
         <div id="products-section"></div>
         <div id="carousel"></div>
         <div id="carousel3D"></div>

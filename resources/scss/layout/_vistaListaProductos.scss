@@ -44,6 +44,25 @@ h1 {
     max-width: 900px;
     margin: 0 auto;
     padding: 1rem;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 2px; // Ancho de la barra de desplazamiento
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #8f8f8f; // Color del botón deslizante(o thumb)
+        border-radius: 20px; // Radio de esquinas del botón deslizante
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #f1f1f1; // Color de la pista (o track)
+        border-radius: 20px; // Radio de esquinas de la pista
+    }
+
+    &::-webkit-scrollbar-corner {
+        background-color: #f1f1f1; // Color de la esquina inferior derecha
+    }
 
     // Contenedor de búsqueda
     .search-container {
@@ -133,7 +152,8 @@ h1 {
 
                 .product-actions {
                     width: 25%;
-                    .espacioBtn{
+
+                    .espacioBtn {
                         margin: 50px;
                     }
                 }
@@ -158,8 +178,9 @@ h1 {
     @media (max-width: 767.98px) {
         .products-table {
             font-size: 0.8rem;
+
             th,
-            td{
+            td {
                 padding: 0.5rem;
             }
         }
@@ -169,8 +190,9 @@ h1 {
     @media (min-width: 768px) and (max-width: 991.98px) {
         .products-table {
             font-size: 0.9rem;
+
             th,
-            td{
+            td {
                 padding: 0.25rem 0.5rem;
             }
         }
@@ -181,6 +203,7 @@ h1 {
     .containerListaProductos {
         width: 95%;
     }
+
     .container-products {
         padding: 0;
 
@@ -230,7 +253,8 @@ h1 {
                 padding: 0.25rem;
                 /* <- Cambiar el tamaño del padding */
             }
-            .espacioBtn{
+
+            .espacioBtn {
                 margin: 5px;
             }
         }

@@ -1,0 +1,88 @@
+$rccs__height: 167.873px;
+$rccs__width: 290px;
+
+.rccs__card {
+    height: $rccs__height;
+    width: $rccs__width;
+    margin: 0 auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.4s linear;
+
+    .rccs__name,
+    .rccs__expiry {
+        font-size: 14px;
+        /* ajusta este valor según tus necesidades */
+    }
+
+    .rccs__content {
+        padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+        $rccs__height: 120px;
+        $rccs__width: 250px;
+        height: $rccs__height;
+        width: $rccs__width;
+
+        .rccs__number {
+            /* reduce el tamaño de fuente para números */
+            top: 40% !important;
+        }
+
+        .rccs__name,
+        .rccs__expiry {
+            font-size: 12px;
+            /* reduce el tamaño de fuente para texto */
+        }
+
+        .rccs__content {
+            padding: 10px; // reduce el padding interno
+        }
+    }
+}
+
+.form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        border: none;
+        border-radius: 4px;
+        background-color: #007aff;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #0066cc;
+        }
+    }
+}

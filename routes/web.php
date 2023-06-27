@@ -15,7 +15,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CartController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\GoogleController;
-
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -156,6 +156,8 @@ Route::get('/clientShow/{id}', function ($id) {
 
     return compact('producto', 'photos', 'videos', 'categories');
 });
+
+Route::get("pruebaIndex", [PaymentController::class, 'index'])->name('prueba.index');
 
 Route::get('/clientShowCarousel/{id}', function ($id) {
     header('Access-Control-Allow-Origin: *');

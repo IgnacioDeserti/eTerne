@@ -9,26 +9,48 @@
         z-index: 1;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.5s ease-in-out; /* aumentar la duración de la transición */
+        transition: max-height 0.5s ease-in-out;
+        /* aumentar la duración de la transición */
         background-color: white;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         border-radius: 4px;
 
         &.open {
             max-height: 250px;
-            transition-duration: 1s; /* aumentar la duración de la transición */
+            transition-duration: 1s;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 2px; // Ancho de la barra de desplazamiento
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #8f8f8f; // Color del botón deslizante(o thumb)
+                border-radius: 20px; // Radio de esquinas del botón deslizante
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color: #f1f1f1; // Color de la pista (o track)
+                border-radius: 20px; // Radio de esquinas de la pista
+            }
+
+            &::-webkit-scrollbar-corner {
+                background-color: #f1f1f1; // Color de la esquina inferior derecha
+            }
         }
     }
 
     &__item {
         opacity: 0;
         transform: translateY(-10px);
-        transition: opacity 1s ease-in-out, transform 1s ease-in-out; /* aumentar la duración de las transiciones */
+        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        /* aumentar la duración de las transiciones */
 
         &.visible {
             opacity: 1;
             transform: translateY(0);
-            transition-duration: 1s; /* aumentar la duración de la transición */
+            transition-duration: 1s;
+            /* aumentar la duración de la transición */
         }
     }
 
@@ -45,7 +67,7 @@
         }
     }
 
-    li{
+    li {
         cursor: pointer;
     }
 

@@ -7,7 +7,7 @@
 @section('content')
     <h1>BIENVENIDO A LOS PRODUCTOS</h1>
     <div class="containerListaProductos">
-        <a class="addProduct" href="{{ route('productos.create') }}">Agregar Producto</a><br><br>
+        <a class="addProduct" href="{{ route('productos.create') }}">Agregar Producto</a>
         @livewire('search-products')
     </div>
 @endsection
